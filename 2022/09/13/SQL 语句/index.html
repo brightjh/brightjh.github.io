@@ -21,25 +21,33 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.13.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="一入Java深似海">
-<meta property="og:type" content="website">
-<meta property="og:title" content="brightzm&#39;s blog">
-<meta property="og:url" content="http://example.com/index.html">
+    <meta name="description" content="SQL 语句DDL 数据库定义语言，用来定义数据库对象：数据库，表，列等   操作数据库  123456789101112131415161718192021-- DDL-- 查询数据库SHOW DATABASES ;-- 创建数据库CREATE DATABASE 数据库名称;-- 判断数据库是否存在,不存在则创建CREATE DATABASE IF NOT EXISTS 数据库名称;CREATE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQL语句">
+<meta property="og:url" content="http://example.com/2022/09/13/SQL%20%E8%AF%AD%E5%8F%A5/index.html">
 <meta property="og:site_name" content="brightzm&#39;s blog">
-<meta property="og:description" content="一入Java深似海">
+<meta property="og:description" content="SQL 语句DDL 数据库定义语言，用来定义数据库对象：数据库，表，列等   操作数据库  123456789101112131415161718192021-- DDL-- 查询数据库SHOW DATABASES ;-- 创建数据库CREATE DATABASE 数据库名称;-- 判断数据库是否存在,不存在则创建CREATE DATABASE IF NOT EXISTS 数据库名称;CREATE">
 <meta property="og:locale">
+<meta property="og:image" content="http://example.com/images/image-20220906160240451.png">
+<meta property="article:published_time" content="2022-09-13T10:23:38.000Z">
+<meta property="article:modified_time" content="2022-09-15T10:54:59.358Z">
 <meta property="article:author" content="Junhao Tang">
+<meta property="article:tag" content="数据库">
+<meta property="article:tag" content="持久层">
+<meta property="article:tag" content="Mysql">
+<meta property="article:tag" content="Mariadb">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/image-20220906160240451.png">
 
 
-<link rel="canonical" href="http://example.com/">
+<link rel="canonical" href="http://example.com/2022/09/13/SQL%20%E8%AF%AD%E5%8F%A5/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-Hans","comments":"","permalink":"","path":"index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://example.com/2022/09/13/SQL%20%E8%AF%AD%E5%8F%A5/","path":"2022/09/13/SQL 语句/","title":"SQL语句"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>brightzm's blog</title>
+<title>SQL语句 | brightzm's blog</title>
   
 
 
@@ -70,7 +78,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">brightzm's blog</h1>
+      <p class="site-title">brightzm's blog</p>
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">唐俊豪的博客</p>
@@ -103,7 +111,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -116,6 +124,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL-%E8%AF%AD%E5%8F%A5"><span class="nav-number">1.</span> <span class="nav-text">SQL 语句</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#DDL"><span class="nav-number">1.1.</span> <span class="nav-text">DDL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DML"><span class="nav-number">1.2.</span> <span class="nav-text">DML</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DQL"><span class="nav-number">1.3.</span> <span class="nav-text">DQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DCL"><span class="nav-number">1.4.</span> <span class="nav-text">DCL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%A6%E6%9D%9F"><span class="nav-number">1.5.</span> <span class="nav-text">约束</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E8%A1%A8%E5%85%B3%E7%B3%BB"><span class="nav-number">1.6.</span> <span class="nav-text">多表关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2"><span class="nav-number">1.7.</span> <span class="nav-text">多表查询</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -182,173 +191,17 @@
 </noscript>
 
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
 
-    
+
+  
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/13/Mybatis%20%E5%85%A5%E9%97%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhao Tang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="brightzm's blog">
-      <meta itemprop="description" content="一入Java深似海">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | brightzm's blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/09/13/Mybatis%20%E5%85%A5%E9%97%A8/" class="post-title-link" itemprop="url">Mybatis入门</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-09-13 18:23:38" itemprop="dateCreated datePublished" datetime="2022-09-13T18:23:38+08:00">2022-09-13</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-09-15 18:54:01" itemprop="dateModified" datetime="2022-09-15T18:54:01+08:00">2022-09-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%90%8E%E7%AB%AF%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">后端框架</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Mybatis-入门"><a href="#Mybatis-入门" class="headerlink" title="Mybatis 入门"></a>Mybatis 入门</h1><p><a target="_blank" rel="noopener" href="https://mybatis.net.cn/index.html">https://mybatis.net.cn/index.html</a></p>
-<ol>
-<li><p>创建Maven项目，pom.xml中导入mybatis依赖</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- mybatis依赖 --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.5.6<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">      </span><br><span class="line">      <span class="comment">&lt;!-- 连接数据库 --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mariadb.jdbc<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mariadb-java-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.0.7<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编写mybatis核心配置文件 – mybatis-config.xml</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span> ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">configuration</span></span></span><br><span class="line"><span class="meta">        <span class="keyword">PUBLIC</span> <span class="string">&quot;-//mybatis.org//DTD Config 3.0//EN&quot;</span></span></span><br><span class="line"><span class="meta">        <span class="string">&quot;http://mybatis.org/dtd/mybatis-3-config.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">environments</span> <span class="attr">default</span>=<span class="string">&quot;development&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">&quot;development&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">&quot;JDBC&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">&quot;POOLED&quot;</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!--数据库连接信息 --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;driver&quot;</span> <span class="attr">value</span>=<span class="string">&quot;org.mariadb.jdbc.Driver&quot;</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;url&quot;</span> <span class="attr">value</span>=<span class="string">&quot;jdbc:mariadb://127.0.0.1:3306/mybatis&quot;</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> <span class="attr">value</span>=<span class="string">&quot;root&quot;</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> <span class="attr">value</span>=<span class="string">&quot;ROOT&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">environment</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">environments</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 加载sql映射文件 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">&quot;UserMapper.xml&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>加载sql映射文件 – UserMapper.xml</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span> ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">mapper</span></span></span><br><span class="line"><span class="meta">        <span class="keyword">PUBLIC</span> <span class="string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span></span></span><br><span class="line"><span class="meta">        <span class="string">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">&quot;test&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- namespace 名称空间--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectAll&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;top.brightzm.pojo.User&quot;</span>&gt;</span></span><br><span class="line">        select *</span><br><span class="line">        from tb_user;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>进行编码</p>
-<ol>
-<li><p>定义pojo类</p>
-</li>
-<li><p>加载核心配置文件，获取sqlFactory对象</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1.加载mybatis核心配置文件，获取sqlSessionFactory</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">resource</span> <span class="operator">=</span> <span class="string">&quot;mybatis.config.xml&quot;</span>;</span><br><span class="line">        <span class="type">InputStream</span> <span class="variable">inputStream</span> <span class="operator">=</span> Resources.getResourceAsStream(resource);</span><br><span class="line">        <span class="type">SqlSessionFactory</span> <span class="variable">sqlSessionFactory</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SqlSessionFactoryBuilder</span>().build(inputStream);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>获取sqlSession对象，执行sql语句</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 2.获取sqlSession对象，执行sql语句</span></span><br><span class="line">        <span class="type">SqlSession</span> <span class="variable">sqlSession</span> <span class="operator">=</span> sqlSessionFactory.openSession();</span><br><span class="line"></span><br><span class="line">        List&lt;User&gt; users = sqlSession.selectList(<span class="string">&quot;test.selectAll&quot;</span>);</span><br><span class="line">        System.out.println(users);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>释放资源</p>
-</li>
-</ol>
-</li>
-</ol>
-<hr>
-<h1 id="Mapper-代理开发"><a href="#Mapper-代理开发" class="headerlink" title="Mapper 代理开发"></a>Mapper 代理开发</h1><ol>
-<li>定义与sql映射文件同名的Mapper接口，并且将Mapper接口和SQL映射文件放着在同一目录下</li>
-</ol>
-<blockquote>
-<p>MAVEN项目下，配置文件必须存放在 src&#x2F;resource目录下</p>
-<p>可以在resource目录下创建路径与接口同名路径，编译后就会处在同一目录下，如图</p>
-<p>路径更改后，mybatis-config.xml中也要同步更改映射文件的路径</p>
-</blockquote>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 加载sql映射文件 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">&quot;top/brightzm/mapper/UserMapper.xml&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>如果Mapper接口名称和SQL映射文件名称相同，并在同一目录下，则可以使用包扫描的方式简化sql映射文件加载</li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 加载sql映射文件 --&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- &lt;mapper resource=&quot;top/brightzm/mapper/UserMapper.xml&quot;/&gt;--&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">&lt;!-- Mapper代理开发方式 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">&quot;top.brightzm.mapper&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<p><img src="/images/image-20220911195311511.png" alt="image-20220911195311511"></p>
-<p><img src="/images/image-20220911195642386.png" alt="image-20220911195642386"></p>
-<ol start="2">
-<li><p>设置sql映射文件的namespace属性为Mapper接口全限定名 – UserMapper.xml</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span> ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">mapper</span></span></span><br><span class="line"><span class="meta">        <span class="keyword">PUBLIC</span> <span class="string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span></span></span><br><span class="line"><span class="meta">        <span class="string">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">&quot;top.brightzm.mapper.UserMapper&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- namespace 名称空间--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectAll&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;top.brightzm.pojo.User&quot;</span>&gt;</span></span><br><span class="line">        select *</span><br><span class="line">        from tb_user;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在Mapper接口中定义方法，方法名就是sql映射文件中sql语句的id，并保持参数类型和返回值类型一致</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;User&gt; <span class="title function_">selectAll</span><span class="params">()</span>;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>进行编码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过sqlSession的getMapper方法获取Mapper接口的代理对象</span></span><br><span class="line">      <span class="type">UserMapper</span> <span class="variable">userMapper</span> <span class="operator">=</span> sqlSession.getMapper(UserMapper.class);</span><br><span class="line">      <span class="comment">// 调用方法</span></span><br><span class="line">      List&lt;User&gt; users = userMapper.selectAll();</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h1 id="Mybaits核心配置文件"><a href="#Mybaits核心配置文件" class="headerlink" title="Mybaits核心配置文件"></a>Mybaits核心配置文件</h1><ol>
-<li><p>文件结构</p>
-<blockquote>
-<p>配置各个标签，需要严格遵守前后顺序</p>
-</blockquote>
-</li>
-</ol>
-<p><img src="/images/image-20220911205135532.png" alt="image-20220911205135532"></p>
-<ol start="2">
-<li><p>类型别名</p>
-<p>类型别名可为 Java 类型设置一个缩写名字。 它仅用于 XML 配置，意在降低冗余的全限定类名书写</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mybaits-config.xml </span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">typeAliases</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 类型别名 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">&quot;top.brightzm.pojo&quot;</span>/&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">typeAliases</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">UserMapper.xml</span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectAll&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;user&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/13/SQL%20%E8%AF%AD%E5%8F%A5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -362,13 +215,13 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | brightzm's blog">
+      <meta itemprop="name" content="SQL语句 | brightzm's blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/09/13/SQL%20%E8%AF%AD%E5%8F%A5/" class="post-title-link" itemprop="url">SQL语句</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          SQL语句
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -407,7 +260,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="SQL-语句"><a href="#SQL-语句" class="headerlink" title="SQL 语句"></a>SQL 语句</h1><h2 id="DDL"><a href="#DDL" class="headerlink" title="DDL"></a>DDL</h2><blockquote>
+        <h1 id="SQL-语句"><a href="#SQL-语句" class="headerlink" title="SQL 语句"></a>SQL 语句</h1><h2 id="DDL"><a href="#DDL" class="headerlink" title="DDL"></a>DDL</h2><blockquote>
 <p>数据库定义语言，用来定义数据库对象：数据库，表，列等</p>
 </blockquote>
 <ul>
@@ -519,7 +372,6 @@
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 事务 ===================</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> account</span><br><span class="line">(</span><br><span class="line">    id    <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY AUTO_INCREMENT,</span><br><span class="line">    name  <span class="type">VARCHAR</span>(<span class="number">20</span>),</span><br><span class="line">    money <span class="keyword">DOUBLE</span>(<span class="number">10</span>, <span class="number">2</span>)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> account(NAME, MONEY)</span><br><span class="line"><span class="keyword">VALUES</span> (<span class="string">&#x27;张三&#x27;</span>, <span class="number">1000</span>),</span><br><span class="line">       (<span class="string">&#x27;李四&#x27;</span>, <span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> name,money <span class="keyword">FROM</span> account;</span><br><span class="line"><span class="comment">-- 转账事务 =================</span></span><br><span class="line"><span class="comment">-- 开启事务</span></span><br><span class="line"><span class="keyword">BEGIN</span>;</span><br><span class="line"><span class="comment">-- 判断李四余额</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 李四金额 -500</span></span><br><span class="line"><span class="keyword">UPDATE</span> account</span><br><span class="line"><span class="keyword">SET</span> money <span class="operator">=</span> money <span class="operator">-</span> <span class="number">500</span></span><br><span class="line"><span class="keyword">WHERE</span> name <span class="operator">=</span> <span class="string">&#x27;李四&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 出错！！！！</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 张三余额 +500</span></span><br><span class="line"><span class="keyword">UPDATE</span> account</span><br><span class="line"><span class="keyword">SET</span> money <span class="operator">=</span> money <span class="operator">+</span> <span class="number">500</span></span><br><span class="line"><span class="keyword">WHERE</span> name <span class="operator">=</span> <span class="string">&#x27;张三&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 提交事务</span></span><br><span class="line"><span class="keyword">COMMIT</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 回滚事务</span></span><br><span class="line"><span class="keyword">ROLLBACK</span> ;</span><br></pre></td></tr></table></figure>
 
 
-      
     </div>
 
     
@@ -527,611 +379,31 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag"># 数据库</a>
+              <a href="/tags/%E6%8C%81%E4%B9%85%E5%B1%82/" rel="tag"># 持久层</a>
+              <a href="/tags/Mysql/" rel="tag"># Mysql</a>
+              <a href="/tags/Mariadb/" rel="tag"># Mariadb</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/09/03/%E9%9B%86%E5%90%88%E4%BD%93%E7%B3%BB/" rel="prev" title="数据结构">
+                  <i class="fa fa-chevron-left"></i> 数据结构
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/09/13/Mybatis%20%E5%85%A5%E9%97%A8/" rel="next" title="Mybatis入门">
+                  Mybatis入门 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
     </footer>
   </article>
 </div>
 
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/03/%E9%9B%86%E5%90%88%E4%BD%93%E7%B3%BB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhao Tang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="brightzm's blog">
-      <meta itemprop="description" content="一入Java深似海">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | brightzm's blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/09/03/%E9%9B%86%E5%90%88%E4%BD%93%E7%B3%BB/" class="post-title-link" itemprop="url">数据结构</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-09-03 18:23:38" itemprop="dateCreated datePublished" datetime="2022-09-03T18:23:38+08:00">2022-09-03</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-09-15 19:25:51" itemprop="dateModified" datetime="2022-09-15T19:25:51+08:00">2022-09-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/API/" itemprop="url" rel="index"><span itemprop="name">API</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="集合进阶"><a href="#集合进阶" class="headerlink" title="集合进阶"></a>集合进阶</h1><h2 id="单列集合-collection"><a href="#单列集合-collection" class="headerlink" title="单列集合 collection"></a>单列集合 collection</h2><h3 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h3><h4 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h4><ol>
-<li><p>迭代器在遍历集合的时候是不依赖索引的</p>
-</li>
-<li><p>迭代器需要掌握三个方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 迭代器</span></span><br><span class="line">        ArrayList&lt;String&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        list.add(<span class="string">&quot;aaa&quot;</span>);</span><br><span class="line">        list.add(<span class="string">&quot;bbb&quot;</span>);</span><br><span class="line">        list.add(<span class="string">&quot;ccc&quot;</span>);</span><br><span class="line">        list.add(<span class="string">&quot;ddd&quot;</span>);</span><br><span class="line"></span><br><span class="line">        Iterator&lt;String&gt; it = list.iterator();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (it.hasNext())&#123;</span><br><span class="line">            <span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> it.next();</span><br><span class="line">            System.out.println(str);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>迭代器的四个细节</p>
-<ul>
-<li>如果当前位置没有元素，继续获取会报错 <em><strong>NoSuchElementException</strong></em></li>
-<li>迭代器遍历完成之后，指针不会复位，如果需要重新遍历，需要再次创建新的迭代器对象</li>
-<li>循环中只能使用一次next方法，否则会遍历到没有元素的位置，报错<em><strong>NoSuchElementException</strong></em></li>
-<li>迭代器遍历时，不能使用集合的方法进行增加或者删除，只能使用迭代器自带的remove——方法删除</li>
-</ul>
-</li>
-</ol>
-<h4 id="增强for"><a href="#增强for" class="headerlink" title="增强for"></a>增强for</h4><p>不能进行删除</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 增强for遍历，本质上还是迭代器（iterator）</span></span><br><span class="line">        <span class="keyword">for</span> (String str : list)&#123;</span><br><span class="line">            System.out.println(str);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="lambda表达式"><a href="#lambda表达式" class="headerlink" title="lambda表达式"></a>lambda表达式</h4><p>不能进行删除</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// forEach方法遍历每个元素，传递到s</span></span><br><span class="line">list.forEach(s -&gt; System.out.println(s));</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="list-系列"><a href="#list-系列" class="headerlink" title="list 系列"></a>list 系列</h3><hr>
-<blockquote>
-<p>添加的元素是<strong>有序</strong>（存的顺序和取是顺序相同）、可重复、有索引</p>
-</blockquote>
-<h4 id="list-特有方法"><a href="#list-特有方法" class="headerlink" title="list 特有方法"></a>list 特有方法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 添加元素，在指定位置插如元素，原来索引上的元素会依次向后移</span></span><br><span class="line">      list.add(<span class="number">3</span>,<span class="string">&quot;fff&quot;</span>);</span><br><span class="line">      System.out.println(list);</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 删除元素，删除指定位置的元素，返回被删除的元素</span></span><br><span class="line">      System.out.println(list.remove(<span class="number">3</span>));</span><br><span class="line">      System.out.println(list);</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 修改元素，将指定位置的元素更改为提供的元素，返回被修改的元素</span></span><br><span class="line">      System.out.println(list.set(<span class="number">2</span>, <span class="string">&quot;CCC&quot;</span>));</span><br><span class="line">      System.out.println(list);</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 获取元素，获取指定位置的元素</span></span><br><span class="line">      System.out.println(list.get(<span class="number">4</span>));</span><br></pre></td></tr></table></figure>
-
-<h4 id="list-五种遍历方式"><a href="#list-五种遍历方式" class="headerlink" title="list 五种遍历方式"></a>list 五种遍历方式</h4><ol>
-<li><p>迭代器遍历</p>
-<p>遍历的过程中需要删除时使用</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1.迭代器遍历</span></span><br><span class="line">        Iterator&lt;String&gt; it = list.iterator();</span><br><span class="line">        <span class="keyword">while</span> (it.hasNext())&#123;</span><br><span class="line">            <span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> it.next();</span><br><span class="line">            <span class="keyword">if</span> (str.equals(<span class="string">&quot;bbb&quot;</span>))&#123;</span><br><span class="line">                it.remove(); <span class="comment">// 删除元素</span></span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(str);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>列表迭代器遍历</p>
-<p>遍历的过程中需要添加元素时使用</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 2.列表迭代器遍历</span></span><br><span class="line">        <span class="comment">// 在遍历过程中可以添加元素</span></span><br><span class="line">        ListIterator&lt;String&gt; listIt = list.listIterator();</span><br><span class="line">        <span class="keyword">while</span> (listIt.hasNext())&#123;</span><br><span class="line">            <span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> listIt.next();</span><br><span class="line">            <span class="keyword">if</span> (str.equals(<span class="string">&quot;ccc&quot;</span>))&#123;</span><br><span class="line">                listIt.add(<span class="string">&quot;CCC&quot;</span>); <span class="comment">// 添加元素</span></span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(str);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>增强for遍历</p>
-<p>仅仅需要遍历时使用</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 3.增强for</span></span><br><span class="line">        <span class="keyword">for</span> (String str: list)&#123;</span><br><span class="line">            System.out.println(str);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Lambda表达式</p>
-<p>仅仅需要遍历时使用</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 4.lambda表达式</span></span><br><span class="line">        list.forEach( s -&gt; System.out.println(s) );</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>普通for遍历</p>
-<p>如果遍历的时候需要操作索引时使用</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 5.普通for循环</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; list.size(); i++) &#123;</span><br><span class="line">            System.out.println(list.get(i));</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h3 id="set-系列"><a href="#set-系列" class="headerlink" title="set 系列"></a>set 系列</h3><hr>
-<h4 id="HashSet"><a href="#HashSet" class="headerlink" title="HashSet"></a>HashSet</h4><blockquote>
-<p>添加的元素是<strong>无序</strong>、不重复、无索引</p>
-</blockquote>
-<ul>
-<li><p>底层原理</p>
-<ul>
-<li><p>HashSet集合底层采取哈希表存储数据</p>
-</li>
-<li><p>哈希表是一种对于增删改查数据性能都较好的结构</p>
-</li>
-</ul>
-</li>
-<li><p>哈希表组成</p>
-<ul>
-<li>jdk8之前：数组+链表</li>
-<li>jdk8开始：数组+链表+红黑树</li>
-</ul>
-</li>
-<li><p>哈希值</p>
-<ul>
-<li><p>根据hashCode方法算出来的int类型的整数</p>
-</li>
-<li><p>该方法定义在Object类中，所有对象都可以调用，默认使用地址值进行计算</p>
-</li>
-<li><p>一般情况下，会重写hashCode方法，利用对象内部的属性值计算哈希值</p>
-<blockquote>
-<p>如果集合中存入的是自定义对象，必须要重写hashCode和equals方法</p>
-</blockquote>
-</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1.创建对象</span></span><br><span class="line">      <span class="type">Student</span> <span class="variable">s1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Student</span>(<span class="string">&quot;张三&quot;</span>,<span class="number">20</span>);</span><br><span class="line">      <span class="type">Student</span> <span class="variable">s2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Student</span>(<span class="string">&quot;张三&quot;</span>,<span class="number">20</span>);</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 2.如果没有重写hashCode方法，计算出的hash值是不同的</span></span><br><span class="line">      System.out.println(s1.hashCode());<span class="comment">// 1523554304</span></span><br><span class="line">      System.out.println(s2.hashCode());<span class="comment">// 1175962212</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 3.重写hashCode方法，计算的hash值就是相同的</span></span><br><span class="line">System.out.println(s1.hashCode());<span class="comment">// 24022540</span></span><br><span class="line">System.out.println(s2.hashCode());<span class="comment">// 24022540</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>存入数据过程</p>
-<ol>
-<li><p>创建一个默认长度16,默认 <em>加载因</em>  为0.75的数组</p>
-<blockquote>
-<p>当数组存入的数据达到（16*0.75&#x3D;12）个时，数组就会扩容两倍</p>
-</blockquote>
-</li>
-<li><p>根据元素的哈希值跟数组的长度计算出应存入的位置</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">index</span> <span class="operator">=</span> (数组长度 -<span class="number">1</span>) &amp; 哈希值</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>判断当前位置是否为null,如果是null就直接存入</p>
-</li>
-<li><p>如果不为null,调用equals方法比较属序值</p>
-</li>
-<li><p>一样就不存入数据               不一样则存入数据，形成链表</p>
-<ul>
-<li><p>jdk8之前：新元素存入数组，老元素挂在新元素下面</p>
-</li>
-<li><p>jkd8以后：新元素直接挂在老元素下面</p>
-<blockquote>
-<p>当链表长度大于8且数组长度大于等于64时，当前链表就会转为红黑树</p>
-</blockquote>
-</li>
-</ul>
-</li>
-</ol>
-</li>
-</ul>
-<h4 id="LinkedHashSet"><a href="#LinkedHashSet" class="headerlink" title="LinkedHashSet"></a>LinkedHashSet</h4><blockquote>
-<ul>
-<li><p>有序、不重复、无索引</p>
-</li>
-<li><p>这里的有序是指保证存储和取出的元素顺序一致</p>
-</li>
-<li><p>HashSet的子类，底层依然是哈希表，只是每个元素多了一个双链表的机制记录存储的顺序</p>
-</li>
-</ul>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/03/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhao Tang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="brightzm's blog">
-      <meta itemprop="description" content="一入Java深似海">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | brightzm's blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/09/03/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-title-link" itemprop="url">数据结构</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-09-03 18:23:38" itemprop="dateCreated datePublished" datetime="2022-09-03T18:23:38+08:00">2022-09-03</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-09-15 18:52:19" itemprop="dateModified" datetime="2022-09-15T18:52:19+08:00">2022-09-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">底层原理</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h1><h2 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h2><ul>
-<li><p>先进后出，后进先出</p>
-</li>
-<li><p>一端开口 栈顶；一端封闭 栈底</p>
-</li>
-</ul>
-<h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><ul>
-<li><p>先进先出，后进后出</p>
-</li>
-<li><p>一端开口 后端；一端开头 前端</p>
-</li>
-</ul>
-<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><ul>
-<li>在内存中一块在一起的元素，是一种<strong>查询快、增删慢</strong>的数据模型</li>
-<li>查询速度快：通过地址值和索引定位，查询任意数据时间复杂度相同</li>
-<li>删除效率低：将一个数据删除后，后面的每个数据都需要前移</li>
-<li>添加（插入）效率极地：添加位置后每个数据后移，再添加元素</li>
-</ul>
-<h2 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h2><ul>
-<li><p>在内存中是分散的</p>
-</li>
-<li><p>每个存储单位是一个节点，是一个单独的对象</p>
-<ul>
-<li>节点有自己的地址</li>
-<li>头节点存储第一个节点的地址（单向链表）或者存储第一个节点的地址和最后一个节点的地址（双向链表）</li>
-<li>单向链表中节点中存储具体数据和下一个节点的地址</li>
-<li>双向链表中节点中存储前一个节点的地址、具体数据、下一个节点的地址<img src="/images/image-20220901221015555.png" alt="image-20220901221015555"></li>
-</ul>
-</li>
-<li><p>链表增删较快、查询慢、首尾操作极快</p>
-</li>
-</ul>
-<hr>
-<h2 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h2><ol>
-<li><p>树形数据结构</p>
-</li>
-<li><p>度：每个节点的子节点数量</p>
-</li>
-<li><p>树高：树的总层数</p>
-</li>
-<li><p>根节点：最顶层的节点</p>
-</li>
-<li><p>左子节点：左下方的节点；右子节点：右下方的节点</p>
-</li>
-<li><p>根节点的左子树</p>
-<p><img src="/images/image-20220903093328908.png" alt="image-20220903093328908"></p>
-</li>
-<li><p>二叉树中，任意节点的度&lt;&#x3D; 2</p>
-</li>
-<li><p>每个节点有一个父节点，一个左子节点，一个右子节点</p>
-</li>
-<li><p>节点的结构</p>
-</li>
-</ol>
-<p><img src="/images/image-20220903092701929.png" alt="image-20220903092701929"></p>
-<hr>
-<h3 id="二叉查找树"><a href="#二叉查找树" class="headerlink" title="二叉查找树"></a>二叉查找树</h3><ul>
-<li>每个节点上最多有两个子节点</li>
-<li>任意节点左子树上的值都小于当前节点</li>
-<li>任意节点右子树上的值都大于当前节点</li>
-</ul>
-<h4 id="存储规则"><a href="#存储规则" class="headerlink" title="存储规则"></a>存储规则</h4><ul>
-<li>小的存左边</li>
-<li>大的存右边</li>
-<li>一样的不存</li>
-</ul>
-<hr>
-<h3 id="二叉树遍历"><a href="#二叉树遍历" class="headerlink" title="二叉树遍历"></a>二叉树遍历</h3><h4 id="前序遍历"><a href="#前序遍历" class="headerlink" title="前序遍历"></a>前序遍历</h4><p>从根节点开始，然后按照当前节点，左子节点，右子节点的顺序遍历</p>
-<h4 id="中序遍历（常用）"><a href="#中序遍历（常用）" class="headerlink" title="中序遍历（常用）"></a>中序遍历（常用）</h4><p>从最左边的子节点开始，然后按照左子节点，当前节点，右子节点的顺序遍历。</p>
-<blockquote>
-<p>遍历出来的数据（二叉查找树）是从大到小排序的，因此最常用</p>
-</blockquote>
-<h4 id="后序遍历"><a href="#后序遍历" class="headerlink" title="后序遍历"></a>后序遍历</h4><p>从最左边的子节点开始，然后按照左子节点，右子节点，当前节点的顺序遍历</p>
-<h4 id="层序遍历"><a href="#层序遍历" class="headerlink" title="层序遍历"></a>层序遍历</h4><p>从根节点开始一层一层的遍历</p>
-<hr>
-<h3 id="平衡二叉树"><a href="#平衡二叉树" class="headerlink" title="平衡二叉树"></a>平衡二叉树</h3><p><em><strong>任意节点</strong></em>左右子树高度差不超过1</p>
-<h4 id="左旋"><a href="#左旋" class="headerlink" title="左旋"></a>左旋</h4><ul>
-<li>确定支点：从添加的节点开始，不断的往父节点找不平衡的节点</li>
-</ul>
-<h5 id="支点非根节点"><a href="#支点非根节点" class="headerlink" title="支点非根节点"></a>支点非根节点</h5><ol>
-<li>以不平衡的点作为支点</li>
-<li>把支点左旋降级，变成左子节点</li>
-<li>晋升原来的右子节点</li>
-</ol>
-<h5 id="支点为根节点"><a href="#支点为根节点" class="headerlink" title="支点为根节点"></a>支点为根节点</h5><ol>
-<li>以不平衡的点作为支点</li>
-<li>将根节点的右侧往左拉</li>
-<li>原先的右子节点变成新的父节点，并把多余的左子节点出让，给已经降级的根节点当右子节点</li>
-</ol>
-<h4 id="右旋"><a href="#右旋" class="headerlink" title="右旋"></a>右旋</h4><p>与左旋同理</p>
-<h4 id="需要旋转的四种情况"><a href="#需要旋转的四种情况" class="headerlink" title="需要旋转的四种情况"></a>需要旋转的四种情况</h4><ol>
-<li>左左：当根节点左子树的左子树有节点插入，导致二叉树不平衡<ul>
-<li>一次右旋即可</li>
-</ul>
-</li>
-<li>左右：当根节点左子树的右子树右节点插入，导致二叉树不平衡<ul>
-<li>先局部左旋，在整体右旋</li>
-</ul>
-</li>
-<li>右右：当根节点右子树的右子树右节点插入，导致二叉树不平衡<ul>
-<li>一次左转即可</li>
-</ul>
-</li>
-<li>右左：当根节点右子树的左子树有节点插入，导致二叉树不平衡<ul>
-<li>先局部右旋，在整体左旋</li>
-</ul>
-</li>
-</ol>
-<hr>
-<h3 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h3><ul>
-<li>是一个二叉查找树</li>
-<li>但不是高度平衡的</li>
-<li>条件：特有的红黑规则</li>
-</ul>
-<h4 id="红黑规则"><a href="#红黑规则" class="headerlink" title="红黑规则"></a>红黑规则</h4><ol>
-<li>每个节点或是红色，或是黑色</li>
-<li>根节点必须是黑色</li>
-<li>如果一个节点没有子节点或者父节点，则该节点相应的指针属性值为Nil,这些Nil视为叶结点，每个叶结点（Nil）是黑色的</li>
-<li>如果一个节点是红色，那么它的子节点必须是黑色（不能出现两个红色节点相连的情况）</li>
-<li>对每一个即诶的那，从该节点到其所有后代叶结点的简单路径上，均包含相同数目的黑色节点</li>
-</ol>
-<h4 id="添加规则"><a href="#添加规则" class="headerlink" title="添加规则"></a>添加规则</h4><ul>
-<li>默认颜色：添加节点的默认颜色是红色</li>
-</ul>
-<p> <img src="/images/image-20220903145748193.png" alt="image-20220903145748193"></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/29/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhao Tang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="brightzm's blog">
-      <meta itemprop="description" content="一入Java深似海">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | brightzm's blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/08/29/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">常见算法</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-08-29 00:00:00" itemprop="dateCreated datePublished" datetime="2022-08-29T00:00:00+08:00">2022-08-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-09-15 18:48:56" itemprop="dateModified" datetime="2022-09-15T18:48:56+08:00">2022-09-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">底层原理</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="常见算法"><a href="#常见算法" class="headerlink" title="常见算法"></a>常见算法</h1><h2 id="查找算法"><a href="#查找算法" class="headerlink" title="查找算法"></a>查找算法</h2><h3 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h3><ul>
-<li>对半查找，每次查找去掉一半，查找的数据必须是有序的</li>
-</ul>
-<ol>
-<li>min max表示当前需要查找的范围</li>
-<li>mid是在min和max中间的</li>
-<li>如果查找的元素在mid的左边，缩小范围时，min不变，max等于mid减一，反之同理</li>
-<li><img src="/images/image-20220828112325766.png" alt="image-20220828112325766"></li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 二分查找</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">binarySearch</span><span class="params">(<span class="type">int</span> number, <span class="type">int</span>[] array)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">min</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">max</span> <span class="operator">=</span> array.length - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (max &lt; min) &#123;				<span class="comment">// 判断所求元素是否存在</span></span><br><span class="line">                <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="type">int</span> <span class="variable">mid</span> <span class="operator">=</span> (max + min) / <span class="number">2</span>;  	<span class="comment">// 获取mid</span></span><br><span class="line">            <span class="keyword">if</span> (array[mid] == number) &#123; </span><br><span class="line">                <span class="keyword">return</span> mid;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (array[mid] &gt; number) &#123;  	<span class="comment">// 判断元素是否在左边</span></span><br><span class="line">                max = mid - <span class="number">1</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (array[mid] &lt; number) &#123;   <span class="comment">// 判断元素是否在右边</span></span><br><span class="line">                min = mid + <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/02/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhao Tang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="brightzm's blog">
-      <meta itemprop="description" content="一入Java深似海">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | brightzm's blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/12/02/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-12-02 20:23:38" itemprop="dateCreated datePublished" datetime="2021-12-02T20:23:38+08:00">2021-12-02</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-09-15 18:52:11" itemprop="dateModified" datetime="2022-09-15T18:52:11+08:00">2022-09-15</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
 
 
 
