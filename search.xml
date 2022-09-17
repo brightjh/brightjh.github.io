@@ -1,0 +1,688 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Java常用API</title>
+    <url>/2022/08/31/Java%20API/</url>
+    <content><![CDATA[<p>API（Application Programming Interface,应用程序编程接口）是一些预先定义的接口，目的是提供应用程序与开发人员基于某软件或硬件的以访问一组例程的能力，而又无需访问源码，或理解内部工作机制的细节。这里列出一些Java常用的API.</p>
+<span id="more"></span>
+
+<h1 id="Java-API"><a href="#Java-API" class="headerlink" title="Java API"></a>Java API</h1><h3 id="Object"><a href="#Object" class="headerlink" title="Object"></a>Object</h3><ol>
+<li>Object 是java中的顶级父类</li>
+<li>toString(): 一般会被重写,打印对象时打印属性</li>
+<li>equals():比较对象,同样一般会重写,比较对象属性值是否相同</li>
+<li>clone(): 克隆,默认浅克隆,使用需要重写方法.如果需要深克隆需要再次重写方法或者使用第三方工具类. gy</li>
+</ol>
+<h3 id="Objects"><a href="#Objects" class="headerlink" title="Objects"></a>Objects</h3><ol>
+<li>objects是一个对象工具类,提供一些操作对象的方法</li>
+<li>equals(对象1,对象2):先做非空判断,再比较两个对象</li>
+<li>isNull(对象):判断对象是否为空</li>
+<li>noNull(对象):判断对象是否不是空,与前者相反</li>
+</ol>
+<h3 id="BigInteger"><a href="#BigInteger" class="headerlink" title="BigInteger"></a>BigInteger</h3><ol>
+<li>表示一个大整数</li>
+<li>如果数字没有超过long的范围,可以使用静态方法获取</li>
+<li>如果超出范围,就用构造方法获取</li>
+<li>对象一旦创建,内部记录的值将不能发生改变</li>
+<li>只要进行计算,都会产生一个新的BigInteger对象</li>
+<li>加减乘除 比较 次幂 转成整数</li>
+</ol>
+<h3 id="BigDecimal"><a href="#BigDecimal" class="headerlink" title="BigDecimal"></a>BigDecimal</h3><ol>
+<li>表示较大的小数和小数运算失真的问题</li>
+<li>超过double类型,使用新建对象,没有超出就使用valueof()方法</li>
+<li>加减乘除(四舍五入: RoundingMode.HALF_UP)</li>
+</ol>
+<h3 id="Regex-正则表达式"><a href="#Regex-正则表达式" class="headerlink" title="Regex 正则表达式"></a>Regex 正则表达式</h3><ol>
+<li><p>校验字符串是否满足规则</p>
+</li>
+<li><p>在一段文本中查找满足要求的内容</p>
+</li>
+<li><p><img src="/images/image-20220822142637567.png" alt="image-20220822142637567"></p>
+</li>
+</ol>
+<p><img src="/images/image-20220822142712074.png" alt="image-20220822142712074"></p>
+<h3 id="SimpleDateFormat"><a href="#SimpleDateFormat" class="headerlink" title="SimpleDateFormat"></a>SimpleDateFormat</h3><ul>
+<li><p>y年</p>
+</li>
+<li><p>M月</p>
+</li>
+<li><p>d日</p>
+</li>
+<li><p>H时</p>
+</li>
+<li><p>m分</p>
+</li>
+<li><p>s秒</p>
+</li>
+</ul>
+<ol>
+<li><p>format(Date) 格式化</p>
+</li>
+<li><p>parse(String) 解析</p>
+</li>
+</ol>
+<h3 id="Calendar"><a href="#Calendar" class="headerlink" title="Calendar"></a>Calendar</h3><ul>
+<li><p>一个抽象类</p>
+</li>
+<li><p>根据不同时区获取不同的日历对象,不能通过new获取,而是通过static修饰的方法getInstance获取</p>
+</li>
+<li><p>默认表示当前时间</p>
+</li>
+<li><p>月份从0开始</p>
+</li>
+<li><p>星期日是一周的开始(老外设置的)</p>
+</li>
+<li><p>把年月日等放到数组当中(原理)</p>
+</li>
+<li><p>数组索引对应</p>
+<ol start="0">
+<li><p>纪元</p>
+</li>
+<li><p>年</p>
+</li>
+<li><p>月</p>
+</li>
+<li><p>一年中的第几周</p>
+</li>
+<li><p>一个月中的第几周</p>
+</li>
+<li><p>一个月中第几天(多少号)</p>
+<p>………..</p>
+</li>
+</ol>
+<h3 id><a href="#" class="headerlink" title></a></h3><p><img src="/images/image-20220824213817582.png" alt="image-20220824213817582"></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Java基础</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>API</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Mybatis入门</title>
+    <url>/2022/09/13/Mybatis%20%E5%85%A5%E9%97%A8/</url>
+    <content><![CDATA[<p>MyBatis 是一款优秀的持久层框架，它支持自定义 SQL、存储过程以及高级映射。MyBatis 免除了几乎所有的 JDBC 代码以及设置参数和获取结果集的工作。MyBatis 可以通过简单的 XML 或注解来配置和映射原始类型、接口和 Java POJO（Plain Old Java Objects，普通老式 Java 对象）为数据库中的记录。</p>
+<span id="more"></span>
+
+
+<h1 id="Mybatis-入门"><a href="#Mybatis-入门" class="headerlink" title="Mybatis 入门"></a>Mybatis 入门</h1><p><a href="https://mybatis.net.cn/index.html">https://mybatis.net.cn/index.html</a></p>
+<ol>
+<li><p>创建Maven项目，pom.xml中导入mybatis依赖</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- mybatis依赖 --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.5.6<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">      </span><br><span class="line">      <span class="comment">&lt;!-- 连接数据库 --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mariadb.jdbc<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mariadb-java-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.0.7<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写mybatis核心配置文件 – mybatis-config.xml</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span> ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">configuration</span></span></span><br><span class="line"><span class="meta">        <span class="keyword">PUBLIC</span> <span class="string">&quot;-//mybatis.org//DTD Config 3.0//EN&quot;</span></span></span><br><span class="line"><span class="meta">        <span class="string">&quot;http://mybatis.org/dtd/mybatis-3-config.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">environments</span> <span class="attr">default</span>=<span class="string">&quot;development&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">&quot;development&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">&quot;JDBC&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">&quot;POOLED&quot;</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!--数据库连接信息 --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;driver&quot;</span> <span class="attr">value</span>=<span class="string">&quot;org.mariadb.jdbc.Driver&quot;</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;url&quot;</span> <span class="attr">value</span>=<span class="string">&quot;jdbc:mariadb://127.0.0.1:3306/mybatis&quot;</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> <span class="attr">value</span>=<span class="string">&quot;root&quot;</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> <span class="attr">value</span>=<span class="string">&quot;ROOT&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">environment</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">environments</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 加载sql映射文件 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">&quot;UserMapper.xml&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>加载sql映射文件 – UserMapper.xml</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span> ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">mapper</span></span></span><br><span class="line"><span class="meta">        <span class="keyword">PUBLIC</span> <span class="string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span></span></span><br><span class="line"><span class="meta">        <span class="string">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">&quot;test&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- namespace 名称空间--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectAll&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;top.brightzm.pojo.User&quot;</span>&gt;</span></span><br><span class="line">        select *</span><br><span class="line">        from tb_user;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>进行编码</p>
+<ol>
+<li><p>定义pojo类</p>
+</li>
+<li><p>加载核心配置文件，获取sqlFactory对象</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 1.加载mybatis核心配置文件，获取sqlSessionFactory</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">resource</span> <span class="operator">=</span> <span class="string">&quot;mybatis.config.xml&quot;</span>;</span><br><span class="line">        <span class="type">InputStream</span> <span class="variable">inputStream</span> <span class="operator">=</span> Resources.getResourceAsStream(resource);</span><br><span class="line">        <span class="type">SqlSessionFactory</span> <span class="variable">sqlSessionFactory</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SqlSessionFactoryBuilder</span>().build(inputStream);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取sqlSession对象，执行sql语句</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 2.获取sqlSession对象，执行sql语句</span></span><br><span class="line">        <span class="type">SqlSession</span> <span class="variable">sqlSession</span> <span class="operator">=</span> sqlSessionFactory.openSession();</span><br><span class="line"></span><br><span class="line">        List&lt;User&gt; users = sqlSession.selectList(<span class="string">&quot;test.selectAll&quot;</span>);</span><br><span class="line">        System.out.println(users);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>释放资源</p>
+</li>
+</ol>
+</li>
+</ol>
+<hr>
+<h1 id="Mapper-代理开发"><a href="#Mapper-代理开发" class="headerlink" title="Mapper 代理开发"></a>Mapper 代理开发</h1><ol>
+<li>定义与sql映射文件同名的Mapper接口，并且将Mapper接口和SQL映射文件放着在同一目录下</li>
+</ol>
+<blockquote>
+<p>MAVEN项目下，配置文件必须存放在 src&#x2F;resource目录下</p>
+<p>可以在resource目录下创建路径与接口同名路径，编译后就会处在同一目录下，如图</p>
+<p>路径更改后，mybatis-config.xml中也要同步更改映射文件的路径</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 加载sql映射文件 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">&quot;top/brightzm/mapper/UserMapper.xml&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如果Mapper接口名称和SQL映射文件名称相同，并在同一目录下，则可以使用包扫描的方式简化sql映射文件加载</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 加载sql映射文件 --&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- &lt;mapper resource=&quot;top/brightzm/mapper/UserMapper.xml&quot;/&gt;--&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">&lt;!-- Mapper代理开发方式 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">&quot;top.brightzm.mapper&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p><img src="/images/image-20220911195311511.png" alt="image-20220911195311511"></p>
+<p><img src="/images/image-20220911195642386.png" alt="image-20220911195642386"></p>
+<ol start="2">
+<li><p>设置sql映射文件的namespace属性为Mapper接口全限定名 – UserMapper.xml</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span> ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">mapper</span></span></span><br><span class="line"><span class="meta">        <span class="keyword">PUBLIC</span> <span class="string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span></span></span><br><span class="line"><span class="meta">        <span class="string">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">&quot;top.brightzm.mapper.UserMapper&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- namespace 名称空间--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectAll&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;top.brightzm.pojo.User&quot;</span>&gt;</span></span><br><span class="line">        select *</span><br><span class="line">        from tb_user;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在Mapper接口中定义方法，方法名就是sql映射文件中sql语句的id，并保持参数类型和返回值类型一致</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;User&gt; <span class="title function_">selectAll</span><span class="params">()</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>进行编码</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 通过sqlSession的getMapper方法获取Mapper接口的代理对象</span></span><br><span class="line">      <span class="type">UserMapper</span> <span class="variable">userMapper</span> <span class="operator">=</span> sqlSession.getMapper(UserMapper.class);</span><br><span class="line">      <span class="comment">// 调用方法</span></span><br><span class="line">      List&lt;User&gt; users = userMapper.selectAll();</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="Mybaits核心配置文件"><a href="#Mybaits核心配置文件" class="headerlink" title="Mybaits核心配置文件"></a>Mybaits核心配置文件</h1><ol>
+<li><p>文件结构</p>
+<blockquote>
+<p>配置各个标签，需要严格遵守前后顺序</p>
+</blockquote>
+</li>
+</ol>
+<p><img src="/images/image-20220911205135532.png" alt="image-20220911205135532"></p>
+<ol start="2">
+<li><p>类型别名</p>
+<p>类型别名可为 Java 类型设置一个缩写名字。 它仅用于 XML 配置，意在降低冗余的全限定类名书写</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">mybaits-config.xml </span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">typeAliases</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 类型别名 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">&quot;top.brightzm.pojo&quot;</span>/&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">typeAliases</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">UserMapper.xml</span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectAll&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;user&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+      <categories>
+        <category>Javaweb</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>数据库</tag>
+        <tag>持久层</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SQL语句</title>
+    <url>/2022/09/13/SQL%20%E8%AF%AD%E5%8F%A5/</url>
+    <content><![CDATA[<p>SQL (Structured Query Language:结构化查询语言) 是用于管理关系数据库管理系统（RDBMS）。 SQL 的范围包括数据插入、查询、更新和删除，数据库模式创建和修改，以及数据访问控制。</p>
+<span id="more"></span>
+
+
+<h1 id="SQL-语句"><a href="#SQL-语句" class="headerlink" title="SQL 语句"></a>SQL 语句</h1><h2 id="DDL"><a href="#DDL" class="headerlink" title="DDL"></a>DDL</h2><blockquote>
+<p>数据库定义语言，用来定义数据库对象：数据库，表，列等</p>
+</blockquote>
+<ul>
+<li>操作数据库</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- DDL</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询数据库</span></span><br><span class="line"><span class="keyword">SHOW</span> DATABASES ;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 创建数据库</span></span><br><span class="line"><span class="keyword">CREATE</span> DATABASE 数据库名称;</span><br><span class="line"><span class="comment">-- 判断数据库是否存在,不存在则创建</span></span><br><span class="line"><span class="keyword">CREATE</span> DATABASE IF <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> 数据库名称;</span><br><span class="line"><span class="keyword">CREATE</span> DATABASE IF <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> 数据库名称;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 删除数据库</span></span><br><span class="line"><span class="keyword">DROP</span> DATABASE 数据库名称;</span><br><span class="line"><span class="comment">-- 存在则删除</span></span><br><span class="line"><span class="keyword">DROP</span> DATABASE IF <span class="keyword">EXISTS</span> 数据库名称;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 使用数据库</span></span><br><span class="line"><span class="comment">-- 查看当前使用的数据库</span></span><br><span class="line"><span class="keyword">SELECT</span> DATABASE();</span><br><span class="line"><span class="comment">-- 使用</span></span><br><span class="line">USE 数据库名称;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>操作数据表</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 查询当前数据库下的所有表名称</span></span><br><span class="line"><span class="keyword">SHOW</span> TABLES ;</span><br><span class="line"><span class="comment">-- 查询表结构</span></span><br><span class="line"><span class="keyword">DESC</span> 表名称;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 创建表</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> 表名称(</span><br><span class="line">    字段名 字段类型,</span><br><span class="line">    字段名 字段类型,</span><br><span class="line">    ....</span><br><span class="line">    字段名 字段类型</span><br><span class="line">    <span class="comment">-- 最后一行没有逗号</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 修改表</span></span><br><span class="line"><span class="comment">-- 1.修改表名</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名称 RENAME <span class="keyword">TO</span> 新的表名称;</span><br><span class="line"><span class="comment">-- 2.添加列</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名称 <span class="keyword">ADD</span> 列名 数据类型;</span><br><span class="line"><span class="comment">-- 3.修改数据类型</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名称 MODIFY 要修改的列名 新的数据类型;</span><br><span class="line"><span class="comment">-- 4.修改列名和数据类型</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名称 CHANGE 旧列名 新的列名 新的数据类型;</span><br><span class="line"><span class="comment">-- 5.删除列</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名称 <span class="keyword">DROP</span> 列名称;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 删除表</span></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> 表名称;</span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> IF <span class="keyword">EXISTS</span> 表名称;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="DML"><a href="#DML" class="headerlink" title="DML"></a>DML</h2><blockquote>
+<p>数据操作语言，用来对数据表中的数据进行增删改查</p>
+</blockquote>
+<ul>
+<li>添加数据</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 给指定列添加数据</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> students(列一, 列二, ...)</span><br><span class="line"><span class="keyword">VALUES</span> (值一，值二);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 给所有列添加数据</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> students(全部列)</span><br><span class="line"><span class="keyword">VALUES</span> (全部值);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 批量添加数据</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> students(列一，列二，列三....)</span><br><span class="line"><span class="keyword">VALUES</span> (值一，值二...),</span><br><span class="line">       (值一，值二...),</span><br><span class="line">       (值一，值二...);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>修改和删除数据</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 修改数据</span></span><br><span class="line"><span class="keyword">UPDATE</span> 表名</span><br><span class="line"><span class="keyword">SET</span> 列一 <span class="operator">=</span> 新值,</span><br><span class="line">    列二 <span class="operator">=</span> 新值,</span><br><span class="line">    ....</span><br><span class="line"><span class="keyword">WHERE</span> 筛选条件;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 删除数据</span></span><br><span class="line"><span class="keyword">DELETE</span></span><br><span class="line"><span class="keyword">FROM</span> 表名</span><br><span class="line"><span class="keyword">WHERE</span> 筛选条件;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="DQL"><a href="#DQL" class="headerlink" title="DQL"></a>DQL</h2><blockquote>
+<p>数据查询语言，用来查询数据库中表的记录（数据）</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">	字段</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">	表</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">	条件</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span></span><br><span class="line">	分组字段</span><br><span class="line"><span class="keyword">HAVING</span></span><br><span class="line">	分组后条件</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line">	排序字段</span><br><span class="line">LIMIT</span><br><span class="line">	分页限定</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>基础查询</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 基础查询 ====================</span></span><br><span class="line"><span class="comment">-- 查询name,age 两列</span></span><br><span class="line"><span class="keyword">SELECT</span> name, age</span><br><span class="line"><span class="keyword">FROM</span> stu;</span><br><span class="line"><span class="comment">-- 查询所有列的数据，</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> stu;</span><br><span class="line"><span class="comment">-- 去除重复记录</span></span><br><span class="line"><span class="keyword">SELECT</span> address</span><br><span class="line"><span class="keyword">FROM</span> stu;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> address</span><br><span class="line"><span class="keyword">FROM</span> stu;</span><br><span class="line"><span class="comment">-- 起别名</span></span><br><span class="line"><span class="keyword">SELECT</span> math <span class="keyword">AS</span> 数学, english <span class="keyword">AS</span> 英语, address <span class="keyword">AS</span> 地址</span><br><span class="line"><span class="keyword">FROM</span> stu;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>条件查询（WHERE）</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 条件查询 ============================</span></span><br><span class="line"><span class="comment">-- 1.查询年龄大于20岁的学员信息</span></span><br><span class="line"><span class="keyword">SELECT</span> name, age, sex, address, math, english, hire_date</span><br><span class="line"><span class="keyword">FROM</span> stu</span><br><span class="line"><span class="keyword">WHERE</span> age <span class="operator">&gt;</span> <span class="number">20</span>;</span><br><span class="line"><span class="comment">-- 2.查询年龄大于等于20岁的学员信息</span></span><br><span class="line"><span class="keyword">SELECT</span> name, age, sex, address, math, english</span><br><span class="line"><span class="keyword">FROM</span> stu</span><br><span class="line"><span class="keyword">WHERE</span> age <span class="operator">&gt;=</span> <span class="number">20</span>;</span><br><span class="line"><span class="comment">-- 3.查询年龄大于等于20岁 并且 年龄 小于等于 30 岁的学员信息</span></span><br><span class="line"><span class="keyword">SELECT</span> name, age, sex, address, math, english</span><br><span class="line"><span class="keyword">FROM</span> stu</span><br><span class="line"><span class="keyword">WHERE</span> age <span class="operator">&gt;=</span> <span class="number">20</span></span><br><span class="line">  <span class="keyword">AND</span> age <span class="operator">&lt;=</span> <span class="number">30</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> name, age, sex, address, math, english</span><br><span class="line"><span class="keyword">FROM</span> stu</span><br><span class="line"><span class="keyword">WHERE</span> age <span class="keyword">BETWEEN</span> <span class="number">20</span> <span class="keyword">AND</span> <span class="number">30</span>;</span><br><span class="line"><span class="comment">-- 4.查询入学日期‘1998-09-01’到‘1999-09-01’之间的学员信息</span></span><br><span class="line"><span class="keyword">SELECT</span> name, age, sex, address, math, english, hire_date</span><br><span class="line"><span class="keyword">FROM</span> stu</span><br><span class="line"><span class="keyword">WHERE</span> hire_date <span class="keyword">BETWEEN</span> <span class="string">&#x27;1998-09-01&#x27;</span> <span class="keyword">AND</span> <span class="string">&#x27;1999-09-01&#x27;</span>;</span><br><span class="line"><span class="comment">-- 5.查询年龄等于18岁的学员信息</span></span><br><span class="line"><span class="keyword">SELECT</span> name, age, sex, address, math, english</span><br><span class="line"><span class="keyword">FROM</span> stu</span><br><span class="line"><span class="keyword">WHERE</span> age <span class="operator">=</span> <span class="number">18</span>;</span><br><span class="line"><span class="comment">-- 6.查询年龄不等于18岁的学员信息</span></span><br><span class="line"><span class="keyword">SELECT</span> name, age, sex, address, math, english</span><br><span class="line"><span class="keyword">FROM</span> stu</span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">NOT</span> age <span class="operator">=</span> <span class="number">18</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> name, age, sex, address, math, english</span><br><span class="line"><span class="keyword">FROM</span> stu</span><br><span class="line"><span class="keyword">WHERE</span> age <span class="operator">!=</span> <span class="number">18</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> name, age, sex, address, math, english</span><br><span class="line"><span class="keyword">FROM</span> stu</span><br><span class="line"><span class="keyword">WHERE</span> age <span class="operator">&lt;&gt;</span> <span class="number">18</span>;</span><br><span class="line"><span class="comment">-- 7.查询年龄等于18岁 或者 年龄等于20岁 或者 年龄等于22岁的学员信息</span></span><br><span class="line"><span class="keyword">SELECT</span> name, age, sex, address, math, english</span><br><span class="line"><span class="keyword">FROM</span> stu</span><br><span class="line"><span class="keyword">WHERE</span> age <span class="operator">=</span> <span class="number">18</span></span><br><span class="line">   <span class="keyword">OR</span> age <span class="operator">=</span> <span class="number">20</span></span><br><span class="line">   <span class="keyword">OR</span> age <span class="operator">=</span> <span class="number">22</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> name, age, sex, address, math, english</span><br><span class="line"><span class="keyword">FROM</span> stu</span><br><span class="line"><span class="keyword">WHERE</span> age <span class="keyword">IN</span> (<span class="number">18</span>, <span class="number">20</span>, <span class="number">22</span>);</span><br><span class="line"><span class="comment">-- 8.查询英语成绩为NULL的学员信息</span></span><br><span class="line"><span class="comment">-- NULL 的比较不能使用 =  ！= ；需要使用 IS  IS NOT</span></span><br><span class="line"><span class="keyword">SELECT</span> name, age, sex, address, math, english</span><br><span class="line"><span class="keyword">FROM</span> stu</span><br><span class="line"><span class="keyword">WHERE</span> english <span class="keyword">IS</span> <span class="keyword">NULL</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 模糊查询 ================</span></span><br><span class="line"><span class="comment">-- 1. 查询姓‘马’的学员信息</span></span><br><span class="line"><span class="keyword">SELECT</span> name, age, sex, address, math, english</span><br><span class="line"><span class="keyword">FROM</span> stu</span><br><span class="line"><span class="keyword">WHERE</span> name <span class="keyword">LIKE</span> <span class="string">&#x27;马%&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 2.查询第二个字是‘花’的学员信息</span></span><br><span class="line"><span class="keyword">SELECT</span> name, age, sex, address, math, english</span><br><span class="line"><span class="keyword">FROM</span> stu</span><br><span class="line"><span class="keyword">WHERE</span> name <span class="keyword">LIKE</span> <span class="string">&#x27;_花%&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 3.查询名字中包含‘德’的学员信息</span></span><br><span class="line"><span class="keyword">SELECT</span> name, age, sex, address, math, english</span><br><span class="line"><span class="keyword">FROM</span> stu</span><br><span class="line"><span class="keyword">WHERE</span> name <span class="keyword">LIKE</span> <span class="string">&#x27;%德%&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>排序查询（ORDER BY）</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 排序查询 =====================</span></span><br><span class="line"><span class="comment">-- 1.查询学生信息，按照年龄升序排列</span></span><br><span class="line"><span class="keyword">SELECT</span> name, age, sex, address, math, english</span><br><span class="line"><span class="keyword">FROM</span> stu</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> age <span class="keyword">ASC</span>;</span><br><span class="line"><span class="comment">-- 2.查询学生信息，按照数学成绩降序排列</span></span><br><span class="line"><span class="keyword">SELECT</span> name, age, sex, address, math, english</span><br><span class="line"><span class="keyword">FROM</span> stu</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> math <span class="keyword">DESC</span>;</span><br><span class="line"><span class="comment">-- 3.查询学生信息，按照数学成绩降序排列，如果数学成绩一样，再按照英语成绩进行升序排列</span></span><br><span class="line"><span class="keyword">SELECT</span> name, age, sex, address, math, english</span><br><span class="line"><span class="keyword">FROM</span> stu</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> math <span class="keyword">DESC</span>, english <span class="keyword">ASC</span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>分组查询（GROUP BY）</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 聚合函数 =====================</span></span><br><span class="line"><span class="comment">-- NULL值统一不参与计算</span></span><br><span class="line"><span class="comment">-- 1.查询班级一共有多少个学生</span></span><br><span class="line"><span class="comment">-- 一般取值为主键或者*</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="built_in">COUNT</span>(id)</span><br><span class="line"><span class="keyword">FROM</span> stu;</span><br><span class="line"><span class="keyword">SELECT</span> <span class="built_in">COUNT</span>(<span class="operator">*</span>)</span><br><span class="line"><span class="keyword">FROM</span> stu;</span><br><span class="line"><span class="comment">-- 2.查询数学成绩的最高分</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="built_in">MAX</span>(math)</span><br><span class="line"><span class="keyword">FROM</span> stu;</span><br><span class="line"><span class="comment">-- 3.查询数学成绩最低分</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="built_in">MIN</span>(math)</span><br><span class="line"><span class="keyword">FROM</span> stu;</span><br><span class="line"><span class="comment">-- 4.查询数学成绩总分</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="built_in">SUM</span>(math)</span><br><span class="line"><span class="keyword">FROM</span> stu;</span><br><span class="line"><span class="comment">-- 5.查询数学成绩的平均分</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="built_in">AVG</span>(math)</span><br><span class="line"><span class="keyword">FROM</span> stu;</span><br><span class="line"><span class="comment">-- 6.查询英语成绩最低分</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="built_in">MIN</span>(english)</span><br><span class="line"><span class="keyword">FROM</span> stu;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 分组函数 =================================</span></span><br><span class="line"><span class="comment">-- 注意：分组之后，查询的字段为聚合函数和分组字段，查询其他字段无任何意义</span></span><br><span class="line"><span class="comment">-- 1.查询男同学和女同学各自的数学平均分</span></span><br><span class="line"><span class="keyword">SELECT</span> sex, <span class="built_in">AVG</span>(math)</span><br><span class="line"><span class="keyword">FROM</span> stu</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> sex;</span><br><span class="line"><span class="comment">-- 2.查询男同学和女同学各自的数学平均分，以及各自人数</span></span><br><span class="line"><span class="keyword">SELECT</span> sex, <span class="built_in">AVG</span>(math), <span class="built_in">COUNT</span>(<span class="operator">*</span>)</span><br><span class="line"><span class="keyword">FROM</span> stu</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> sex;</span><br><span class="line"><span class="comment">-- 3.查询男同学和女同学各自的数学平均分，以及各自人数，要求：分数低于70的不参与分组</span></span><br><span class="line"><span class="keyword">SELECT</span> sex, <span class="built_in">AVG</span>(math), <span class="built_in">COUNT</span>(<span class="operator">*</span>)</span><br><span class="line"><span class="keyword">FROM</span> stu</span><br><span class="line"><span class="keyword">WHERE</span> math <span class="operator">&gt;=</span> <span class="number">70</span></span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> sex;</span><br><span class="line"><span class="comment">-- 4.查询男同学和女同学各自的数学平均分，以及各自人数，</span></span><br><span class="line"><span class="comment">-- 要求：分数低于70分的不参与分组，分组之后人数大于2的才能显示</span></span><br><span class="line"><span class="keyword">SELECT</span> sex, <span class="built_in">AVG</span>(math), <span class="built_in">COUNT</span>(<span class="operator">*</span>)</span><br><span class="line"><span class="keyword">FROM</span> stu</span><br><span class="line"><span class="keyword">WHERE</span> math <span class="operator">&gt;=</span> <span class="number">70</span></span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> sex</span><br><span class="line"><span class="keyword">HAVING</span> <span class="built_in">COUNT</span>(<span class="operator">*</span>) <span class="operator">&gt;</span> <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>分页查询</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 分页查询 ============================</span></span><br><span class="line"><span class="comment">-- 起始索引从0开始</span></span><br><span class="line"><span class="comment">-- 1.从零开始查询，查询3条数据</span></span><br><span class="line"><span class="keyword">SELECT</span> name, age, sex, address, math, english, hire_date</span><br><span class="line"><span class="keyword">FROM</span> stu</span><br><span class="line">LIMIT <span class="number">0</span>,<span class="number">3</span>;</span><br><span class="line"><span class="comment">-- 2.每页显示3条数据，查询第一页数据</span></span><br><span class="line"><span class="keyword">SELECT</span> name,age,sex,address,math,english,hire_date</span><br><span class="line"><span class="keyword">FROM</span> stu</span><br><span class="line">LIMIT <span class="number">0</span>,<span class="number">3</span>;</span><br><span class="line"><span class="comment">-- 3.每页显示3条数据，查询第二页数据</span></span><br><span class="line"><span class="keyword">SELECT</span> name,age,sex,address,math,english,hire_date</span><br><span class="line"><span class="keyword">FROM</span> stu</span><br><span class="line">LIMIT <span class="number">3</span>,<span class="number">3</span>;</span><br><span class="line"><span class="comment">-- 4.每页显示3条数据，查询第三页数据</span></span><br><span class="line"><span class="keyword">SELECT</span> name,age,sex,address,math,english,hire_date</span><br><span class="line"><span class="keyword">FROM</span> stu</span><br><span class="line">LIMIT <span class="number">6</span>,<span class="number">3</span>;</span><br><span class="line"><span class="comment">-- 起始索引 = （当前页码-1）* 每页显示的条数 </span></span><br></pre></td></tr></table></figure>
+
+<h2 id="DCL"><a href="#DCL" class="headerlink" title="DCL"></a>DCL</h2><blockquote>
+<p>数据控制语言，用来定义数据库的访问全新和安全级别，及创建用户</p>
+</blockquote>
+<h2 id="约束"><a href="#约束" class="headerlink" title="约束"></a>约束</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 约束=============================</span></span><br><span class="line"><span class="comment">-- 创建员工表</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> emp</span><br><span class="line">(</span><br><span class="line">    id       <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY auto_increment, <span class="comment">-- 员工ID,主键且自增长</span></span><br><span class="line">    eName    <span class="type">VARCHAR</span>(<span class="number">50</span>)  <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">UNIQUE</span>,   <span class="comment">-- 员工姓名，非空且唯一</span></span><br><span class="line">    joinDate <span class="type">DATE</span>         <span class="keyword">NOT</span> <span class="keyword">NULL</span>,          <span class="comment">-- 入职日期，非空</span></span><br><span class="line">    salary   <span class="keyword">DOUBLE</span>(<span class="number">7</span>, <span class="number">2</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,          <span class="comment">-- 工资，非空</span></span><br><span class="line">    bonus    <span class="keyword">DOUBLE</span>(<span class="number">7</span>, <span class="number">2</span>) <span class="keyword">DEFAULT</span> <span class="number">0</span>          <span class="comment">-- 奖金，如果没有奖金默认为0</span></span><br><span class="line"></span><br><span class="line">);</span><br><span class="line"><span class="comment">-- 插入数据</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp(ID, ENAME, JOINDATE, SALARY, BONUS)</span><br><span class="line"><span class="keyword">VALUES</span> (<span class="number">1</span>, <span class="string">&#x27;张三&#x27;</span>, <span class="string">&#x27;2022-9-5&#x27;</span>, <span class="number">9000</span>, <span class="number">5000</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 主键约束Demo:非空且唯一</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp(ID, ENAME, JOINDATE, SALARY, BONUS)</span><br><span class="line"><span class="keyword">VALUES</span> (<span class="keyword">NULL</span>, <span class="string">&#x27;张三&#x27;</span>, <span class="string">&#x27;2022-9-5&#x27;</span>, <span class="number">9000</span>, <span class="number">5000</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp(ID, ENAME, JOINDATE, SALARY, BONUS)</span><br><span class="line"><span class="keyword">VALUES</span> (<span class="number">1</span>, <span class="string">&#x27;张三&#x27;</span>, <span class="string">&#x27;2022-9-5&#x27;</span>, <span class="number">9000</span>, <span class="number">5000</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 非空约束Demo</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp(ID, ENAME, JOINDATE, SALARY, BONUS)</span><br><span class="line"><span class="keyword">VALUES</span> (<span class="number">2</span>, <span class="keyword">NULL</span>, <span class="string">&#x27;2022-9-5&#x27;</span>, <span class="number">8000</span>, <span class="number">5000</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 唯一约束Demo</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp(ID, ENAME, JOINDATE, SALARY, BONUS)</span><br><span class="line"><span class="keyword">VALUES</span> (<span class="number">2</span>, <span class="string">&#x27;张三&#x27;</span>, <span class="string">&#x27;2022-9-5&#x27;</span>, <span class="number">9000</span>, <span class="number">5000</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 默认约束Demo</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp(ID, ENAME, JOINDATE, SALARY)</span><br><span class="line"><span class="keyword">VALUES</span> (<span class="number">2</span>, <span class="string">&#x27;李四&#x27;</span>, <span class="string">&#x27;2022-9-5&#x27;</span>, <span class="number">9000</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 外键约束 ------------------</span></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> IF <span class="keyword">EXISTS</span> emp;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 创建部门表</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> depart(</span><br><span class="line">    id <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY AUTO_INCREMENT,</span><br><span class="line">    depName <span class="type">VARCHAR</span>(<span class="number">20</span>),</span><br><span class="line">    address <span class="type">VARCHAR</span>(<span class="number">20</span>)</span><br><span class="line">);</span><br><span class="line"><span class="comment">-- 创建员工表</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> emp(</span><br><span class="line">    id <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY AUTO_INCREMENT,</span><br><span class="line">    name <span class="type">VARCHAR</span>(<span class="number">20</span>),</span><br><span class="line">    age <span class="type">INT</span>,</span><br><span class="line">    depID <span class="type">int</span>,</span><br><span class="line">    <span class="comment">-- 添加外键 depID 关联 depart 表的id主键</span></span><br><span class="line">    <span class="keyword">CONSTRAINT</span> fk_emp_depart <span class="keyword">FOREIGN</span> KEY (depID) <span class="keyword">REFERENCES</span> depart(id)</span><br><span class="line">);</span><br><span class="line"><span class="comment">-- 删除外键</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> emp <span class="keyword">DROP</span> <span class="keyword">FOREIGN</span> KEY fk_emp_depart;</span><br><span class="line"><span class="comment">-- 建完表后，添加外键</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> emp <span class="keyword">ADD</span>  <span class="keyword">CONSTRAINT</span> fk_emp_depart <span class="keyword">FOREIGN</span> KEY (depID) <span class="keyword">REFERENCES</span> depart(id);</span><br></pre></td></tr></table></figure>
+
+<h2 id="多表关系"><a href="#多表关系" class="headerlink" title="多表关系"></a>多表关系</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 多对多关系演示===================</span></span><br><span class="line"><span class="comment">-- 订单表</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> tb_order(</span><br><span class="line">    id <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY AUTO_INCREMENT,</span><br><span class="line">    payment <span class="keyword">DOUBLE</span>(<span class="number">10</span>,<span class="number">2</span>),</span><br><span class="line">    payment_type TINYINT,</span><br><span class="line">    status TINYINT</span><br><span class="line">);</span><br><span class="line"><span class="comment">-- 商品表</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> tb_goods(</span><br><span class="line">    id <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY AUTO_INCREMENT,</span><br><span class="line">    title <span class="type">VARCHAR</span>(<span class="number">100</span>),</span><br><span class="line">    price <span class="keyword">DOUBLE</span>(<span class="number">10</span>,<span class="number">2</span>)</span><br><span class="line">);</span><br><span class="line"><span class="comment">-- 订单商品中间表</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> tb_order_goods(</span><br><span class="line">    id <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY AUTO_INCREMENT,</span><br><span class="line">    order_id <span class="type">INT</span>,</span><br><span class="line">    goods_id <span class="type">INT</span>,</span><br><span class="line">    count <span class="type">INT</span></span><br><span class="line">);</span><br><span class="line"><span class="comment">-- 创建外键</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> tb_order_goods <span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> fk_order_id <span class="keyword">FOREIGN</span> KEY (order_id) <span class="keyword">REFERENCES</span> tb_order(id);</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> tb_order_goods <span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> fk_goods_id <span class="keyword">FOREIGN</span> KEY (goods_id) <span class="keyword">REFERENCES</span> tb_goods(id);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 一对一关系演示 ==================</span></span><br><span class="line"><span class="comment">-- 后创建</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> tb_user(</span><br><span class="line">    id <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY AUTO_INCREMENT,</span><br><span class="line">    photo <span class="type">VARCHAR</span>(<span class="number">64</span>),</span><br><span class="line">    nickname <span class="type">VARCHAR</span>(<span class="number">20</span>),</span><br><span class="line">    age <span class="type">INT</span>,</span><br><span class="line">    gender <span class="type">CHAR</span>(<span class="number">1</span>),</span><br><span class="line">    desc_id <span class="type">INT</span> <span class="keyword">UNIQUE</span>, <span class="comment">-- 唯一外键</span></span><br><span class="line">    <span class="keyword">CONSTRAINT</span> fk_desc_id <span class="keyword">FOREIGN</span> KEY (desc_id) <span class="keyword">REFERENCES</span> tb_user_desc(id)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> tb_user_desc(</span><br><span class="line">    id <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY AUTO_INCREMENT,</span><br><span class="line">    city <span class="type">VARCHAR</span>(<span class="number">10</span>),</span><br><span class="line">    edu <span class="type">VARCHAR</span>(<span class="number">10</span>),</span><br><span class="line">    income <span class="keyword">DOUBLE</span>(<span class="number">8</span>,<span class="number">2</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h2 id="多表查询"><a href="#多表查询" class="headerlink" title="多表查询"></a>多表查询</h2><ul>
+<li><p>内连接</p>
+<blockquote>
+<p>查询两张表交集的数据</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 隐式内连接</span></span><br><span class="line"><span class="keyword">SELECT</span> 字段列表 <span class="keyword">FROM</span> 表<span class="number">1</span>,表<span class="number">2.</span>.. <span class="keyword">WHERE</span> 条件;</span><br><span class="line"><span class="comment">-- 显示内连接</span></span><br><span class="line"><span class="keyword">SELECT</span> 字段列表 <span class="keyword">FROM</span> 表<span class="number">1</span> [<span class="keyword">INNER</span>] <span class="keyword">JOIN</span> 表<span class="number">2</span> <span class="keyword">ON</span> 条件;</span><br></pre></td></tr></table></figure>
+
+ <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 隐式内连接 ===================================</span></span><br><span class="line"><span class="comment">-- 查询emp的name,gender,dept表的dName</span></span><br><span class="line"><span class="keyword">SELECT</span> emp.name, emp.gender, dept.dName</span><br><span class="line"><span class="keyword">FROM</span> emp,</span><br><span class="line">     dept</span><br><span class="line"><span class="keyword">WHERE</span> emp.dep_id <span class="operator">=</span> dept.did;</span><br><span class="line"><span class="comment">-- 给表起别名</span></span><br><span class="line"><span class="keyword">SELECT</span> t1.name, t1.gender, t2.dName</span><br><span class="line"><span class="keyword">FROM</span> emp t1,</span><br><span class="line">     dept t2</span><br><span class="line"><span class="keyword">WHERE</span> t1.dep_id <span class="operator">=</span> t2.did;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 显示内连接</span></span><br><span class="line"><span class="keyword">SELECT</span> emp.id, emp.name, emp.gender, dept.did</span><br><span class="line"><span class="keyword">FROM</span> emp</span><br><span class="line">         <span class="keyword">INNER</span> <span class="keyword">JOIN</span> dept <span class="keyword">ON</span> emp.dep_id <span class="operator">=</span> dept.did;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> emp.id, emp.name, emp.gender, dept.did</span><br><span class="line"><span class="keyword">FROM</span> emp</span><br><span class="line">         <span class="keyword">JOIN</span> dept <span class="keyword">ON</span> emp.dep_id <span class="operator">=</span> dept.did;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>外连接</p>
+<blockquote>
+<p>查询一张表的全部数据和另一张表的交集部分</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 左外连接</span></span><br><span class="line"><span class="keyword">SELECT</span> 字段列表</span><br><span class="line"><span class="keyword">FROM</span> 表一</span><br><span class="line">         <span class="keyword">LEFT</span> [<span class="keyword">OUTER</span>] <span class="keyword">JOIN</span> 表<span class="number">2</span> （别名） <span class="keyword">on</span> 条件;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 右外连接</span></span><br><span class="line"><span class="keyword">SELECT</span> 字段列表</span><br><span class="line"><span class="keyword">FROM</span> 表一</span><br><span class="line">         <span class="keyword">RIGHT</span> [<span class="keyword">OUTER</span>] <span class="keyword">JOIN</span> 表<span class="number">2</span> （别名） <span class="keyword">on</span> 条件;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 外连接====================================</span></span><br><span class="line"><span class="comment">-- 左外连接</span></span><br><span class="line"><span class="keyword">SELECT</span> emp.id, NAME, gender, salary, join_date, dep_id, d.dName</span><br><span class="line"><span class="keyword">FROM</span> emp</span><br><span class="line">         <span class="keyword">LEFT</span> <span class="keyword">OUTER</span> <span class="keyword">JOIN</span> dept d <span class="keyword">on</span> d.did <span class="operator">=</span> emp.dep_id;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> emp.id, NAME, gender, salary, join_date, dep_id, d.dName</span><br><span class="line"><span class="keyword">FROM</span> emp</span><br><span class="line">         <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> dept d <span class="keyword">on</span> d.did <span class="operator">=</span> emp.dep_id;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 右外连接</span></span><br><span class="line"><span class="keyword">SELECT</span> emp.id, NAME, gender, salary, join_date, dep_id, d.dName</span><br><span class="line"><span class="keyword">FROM</span> emp</span><br><span class="line">         <span class="keyword">RIGHT</span> <span class="keyword">JOIN</span> dept d <span class="keyword">on</span> d.did <span class="operator">=</span> emp.dep_id;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>子查询</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 单行单列 作为条件值</span></span><br><span class="line"><span class="keyword">SELECT</span> 字段列表</span><br><span class="line"><span class="keyword">FROM</span> 表</span><br><span class="line"><span class="keyword">WHERE</span> 字段名 （<span class="operator">=</span> <span class="operator">!=</span> <span class="operator">&lt;</span> <span class="operator">&gt;</span>） (子查询);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 多行单列 作为条件值</span></span><br><span class="line"><span class="keyword">SELECT</span> 字段列表</span><br><span class="line"><span class="keyword">FROM</span> 表</span><br><span class="line"><span class="keyword">WHERE</span> 字段名 <span class="keyword">in</span> (子查询);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 多行多列 作为虚拟表</span></span><br><span class="line"><span class="keyword">SELECT</span> 字段列表</span><br><span class="line"><span class="keyword">FROM</span> （子查询）表名</span><br><span class="line"><span class="keyword">WHERE</span> 条件;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 子查询===========================</span></span><br><span class="line"><span class="comment">-- 查询比猪八戒工资高的员工的姓名和工资</span></span><br><span class="line"><span class="keyword">SELECT</span> salary</span><br><span class="line"><span class="keyword">FROM</span> emp</span><br><span class="line"><span class="keyword">WHERE</span> NAME <span class="operator">=</span> <span class="string">&#x27;猪八戒&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> NAME, salary</span><br><span class="line"><span class="keyword">FROM</span> emp</span><br><span class="line"><span class="keyword">WHERE</span> salary <span class="operator">&gt;</span> (<span class="keyword">SELECT</span> salary <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> NAME <span class="operator">=</span> <span class="string">&#x27;猪八戒&#x27;</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询‘财务部’和‘市场部’所有的员工信息</span></span><br><span class="line"><span class="keyword">SELECT</span> did</span><br><span class="line"><span class="keyword">FROM</span> dept</span><br><span class="line"><span class="keyword">WHERE</span> dName <span class="operator">=</span> <span class="string">&#x27;财务部&#x27;</span></span><br><span class="line">   <span class="keyword">OR</span> dName <span class="operator">=</span> <span class="string">&#x27;市场部&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> ID, NAME, GENDER, SALARY, JOIN_DATE, DEP_ID</span><br><span class="line"><span class="keyword">FROM</span> emp</span><br><span class="line"><span class="keyword">WHERE</span> dep_id <span class="keyword">in</span> (<span class="keyword">SELECT</span> did <span class="keyword">FROM</span> dept <span class="keyword">WHERE</span> dName <span class="operator">=</span> <span class="string">&#x27;财务部&#x27;</span> <span class="keyword">OR</span> dName <span class="operator">=</span> <span class="string">&#x27;市场部&#x27;</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询入职日期是‘2011-11-11’之后的员工和部门信息</span></span><br><span class="line"><span class="keyword">SELECT</span> ID, NAME, GENDER, SALARY, JOIN_DATE, DEP_ID</span><br><span class="line"><span class="keyword">FROM</span> emp</span><br><span class="line"><span class="keyword">WHERE</span> join_date <span class="operator">&gt;</span> <span class="string">&#x27;2011-11-11&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> ID, NAME, GENDER, SALARY, JOIN_DATE, DEP_ID, DID, DNAME</span><br><span class="line"><span class="keyword">FROM</span> (<span class="keyword">SELECT</span> ID, NAME, GENDER, SALARY, JOIN_DATE, DEP_ID <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> join_date <span class="operator">&gt;</span> <span class="string">&#x27;2011-11-11&#x27;</span>) t1,</span><br><span class="line">     dept</span><br><span class="line"><span class="keyword">WHERE</span> dep_id <span class="operator">=</span> dept.did;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> ID, NAME, GENDER, SALARY, JOIN_DATE, DEP_ID, DID, DNAME</span><br><span class="line"><span class="keyword">FROM</span> (<span class="keyword">SELECT</span> ID, NAME, GENDER, SALARY, JOIN_DATE, DEP_ID <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> join_date <span class="operator">&gt;</span> <span class="string">&#x27;2011-11-11&#x27;</span>) t1</span><br><span class="line">         <span class="keyword">JOIN</span></span><br><span class="line">     dept</span><br><span class="line">     <span class="keyword">ON</span> dep_id <span class="operator">=</span> dept.did;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>多表查询练习</p>
+</li>
+</ul>
+<p><img src="/images/image-20220906160240451.png" alt="image-20220906160240451"></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 多表查询 练习 ===================================</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> IF <span class="keyword">EXISTS</span> emp;</span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> IF <span class="keyword">EXISTS</span> dept;</span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> IF <span class="keyword">EXISTS</span> job;</span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> IF <span class="keyword">EXISTS</span> salaryGrade;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 部门表</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> dept</span><br><span class="line">(</span><br><span class="line">    id    <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY <span class="keyword">PRIMARY</span> KEY, <span class="comment">-- 部门id</span></span><br><span class="line">    dName <span class="type">VARCHAR</span>(<span class="number">50</span>),                 <span class="comment">-- 部门名称</span></span><br><span class="line">    loc   <span class="type">VARCHAR</span>(<span class="number">50</span>)                  <span class="comment">-- 部门所在地</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 职务表，职务名称，职务描述</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> job</span><br><span class="line">(</span><br><span class="line">    id          <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY,</span><br><span class="line">    jName       <span class="type">VARCHAR</span>(<span class="number">20</span>),</span><br><span class="line">    description <span class="type">VARCHAR</span>(<span class="number">50</span>)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 员工表</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> emp</span><br><span class="line">(</span><br><span class="line">    id       <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY, <span class="comment">-- 员工id</span></span><br><span class="line">    eName    <span class="type">VARCHAR</span>(<span class="number">50</span>),     <span class="comment">-- 员工姓名</span></span><br><span class="line">    job_id   <span class="type">INT</span>,             <span class="comment">-- 职务id</span></span><br><span class="line">    mgr      <span class="type">INT</span>,             <span class="comment">-- 上级领导</span></span><br><span class="line">    joinDate <span class="type">DATE</span>,            <span class="comment">-- 入职日期</span></span><br><span class="line">    salary   <span class="type">DECIMAL</span>(<span class="number">7</span>, <span class="number">2</span>),   <span class="comment">-- 工资</span></span><br><span class="line">    bonus    <span class="type">DECIMAL</span>(<span class="number">7</span>, <span class="number">2</span>),   <span class="comment">-- 奖金</span></span><br><span class="line">    dept_id  <span class="type">INT</span>,             <span class="comment">-- 所在部门编号</span></span><br><span class="line">    <span class="keyword">CONSTRAINT</span> emp_jobId_ref_job_id_fk <span class="keyword">FOREIGN</span> KEY (job_id) <span class="keyword">REFERENCES</span> job (id),</span><br><span class="line">    <span class="keyword">CONSTRAINT</span> emp_deptId_ref_dept_id_fk <span class="keyword">FOREIGN</span> KEY (dept_id) <span class="keyword">REFERENCES</span> dept (id)</span><br><span class="line">);</span><br><span class="line"><span class="comment">-- 工资等级表</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> salaryGrade</span><br><span class="line">(</span><br><span class="line">    grade    <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY, <span class="comment">-- 级别</span></span><br><span class="line">    loSalary <span class="type">INT</span>,             <span class="comment">-- 最低工资</span></span><br><span class="line">    hiSalary <span class="type">INT</span>              <span class="comment">-- 最高工资</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 添加4个部门</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> dept(id, dname, loc)</span><br><span class="line"><span class="keyword">VALUES</span> (<span class="number">10</span>, <span class="string">&#x27;教研部&#x27;</span>, <span class="string">&#x27;北京&#x27;</span>),</span><br><span class="line">       (<span class="number">20</span>, <span class="string">&#x27;学工部&#x27;</span>, <span class="string">&#x27;上海&#x27;</span>),</span><br><span class="line">       (<span class="number">30</span>, <span class="string">&#x27;销售部&#x27;</span>, <span class="string">&#x27;广州&#x27;</span>),</span><br><span class="line">       (<span class="number">40</span>, <span class="string">&#x27;财务部&#x27;</span>, <span class="string">&#x27;深圳&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 添加4个职务</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> job (id, jname, description)</span><br><span class="line"><span class="keyword">VALUES</span> (<span class="number">1</span>, <span class="string">&#x27;董事长&#x27;</span>, <span class="string">&#x27;管理整个公司，接单&#x27;</span>),</span><br><span class="line">       (<span class="number">2</span>, <span class="string">&#x27;经理&#x27;</span>, <span class="string">&#x27;管理部门员工&#x27;</span>),</span><br><span class="line">       (<span class="number">3</span>, <span class="string">&#x27;销售员&#x27;</span>, <span class="string">&#x27;向客人推销产品&#x27;</span>),</span><br><span class="line">       (<span class="number">4</span>, <span class="string">&#x27;文员&#x27;</span>, <span class="string">&#x27;使用办公软件&#x27;</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 添加员工</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp(id, ename, job_id, mgr, joindate, salary, bonus, dept_id)</span><br><span class="line"><span class="keyword">VALUES</span> (<span class="number">1001</span>, <span class="string">&#x27;孙悟空&#x27;</span>, <span class="number">4</span>, <span class="number">1004</span>, <span class="string">&#x27;2000-12-17&#x27;</span>, <span class="string">&#x27;8000.00&#x27;</span>, <span class="keyword">NULL</span>, <span class="number">20</span>),</span><br><span class="line">       (<span class="number">1002</span>, <span class="string">&#x27;卢俊义&#x27;</span>, <span class="number">3</span>, <span class="number">1006</span>, <span class="string">&#x27;2001-02-20&#x27;</span>, <span class="string">&#x27;16000.00&#x27;</span>, <span class="string">&#x27;3000.00&#x27;</span>, <span class="number">30</span>),</span><br><span class="line">       (<span class="number">1003</span>, <span class="string">&#x27;林冲&#x27;</span>, <span class="number">3</span>, <span class="number">1006</span>, <span class="string">&#x27;2001-02-22&#x27;</span>, <span class="string">&#x27;12500.00&#x27;</span>, <span class="string">&#x27;5000.00&#x27;</span>, <span class="number">30</span>),</span><br><span class="line">       (<span class="number">1004</span>, <span class="string">&#x27;唐僧&#x27;</span>, <span class="number">2</span>, <span class="number">1009</span>, <span class="string">&#x27;2001-04-02&#x27;</span>, <span class="string">&#x27;29750.00&#x27;</span>, <span class="keyword">NULL</span>, <span class="number">20</span>),</span><br><span class="line">       (<span class="number">1005</span>, <span class="string">&#x27;李逵&#x27;</span>, <span class="number">4</span>, <span class="number">1006</span>, <span class="string">&#x27;2001-09-28&#x27;</span>, <span class="string">&#x27;12500.00&#x27;</span>, <span class="string">&#x27;14000.00&#x27;</span>, <span class="number">30</span>),</span><br><span class="line">       (<span class="number">1006</span>, <span class="string">&#x27;宋江&#x27;</span>, <span class="number">2</span>, <span class="number">1009</span>, <span class="string">&#x27;2001-05-01&#x27;</span>, <span class="string">&#x27;28500.00&#x27;</span>, <span class="keyword">NULL</span>, <span class="number">30</span>),</span><br><span class="line">       (<span class="number">1007</span>, <span class="string">&#x27;刘备&#x27;</span>, <span class="number">2</span>, <span class="number">1009</span>, <span class="string">&#x27;2001-09-01&#x27;</span>, <span class="string">&#x27;24500.00&#x27;</span>, <span class="keyword">NULL</span>, <span class="number">10</span>),</span><br><span class="line">       (<span class="number">1008</span>, <span class="string">&#x27;猪八戒&#x27;</span>, <span class="number">4</span>, <span class="number">1004</span>, <span class="string">&#x27;2007-04-19&#x27;</span>, <span class="string">&#x27;30000.00&#x27;</span>, <span class="keyword">NULL</span>, <span class="number">20</span>),</span><br><span class="line">       (<span class="number">1009</span>, <span class="string">&#x27;罗贯中&#x27;</span>, <span class="number">1</span>, <span class="keyword">NULL</span>, <span class="string">&#x27;2001-11-17&#x27;</span>, <span class="string">&#x27;50000.00&#x27;</span>, <span class="keyword">NULL</span>, <span class="number">10</span>),</span><br><span class="line">       (<span class="number">1010</span>, <span class="string">&#x27;吴用&#x27;</span>, <span class="number">3</span>, <span class="number">1006</span>, <span class="string">&#x27;2001-09-08&#x27;</span>, <span class="string">&#x27;15000.00&#x27;</span>, <span class="string">&#x27;0.00&#x27;</span>, <span class="number">30</span>),</span><br><span class="line">       (<span class="number">1011</span>, <span class="string">&#x27;沙僧&#x27;</span>, <span class="number">4</span>, <span class="number">1004</span>, <span class="string">&#x27;2007-05-23&#x27;</span>, <span class="string">&#x27;11000.00&#x27;</span>, <span class="keyword">NULL</span>, <span class="number">20</span>),</span><br><span class="line">       (<span class="number">1012</span>, <span class="string">&#x27;李逵&#x27;</span>, <span class="number">4</span>, <span class="number">1006</span>, <span class="string">&#x27;2001-12-03&#x27;</span>, <span class="string">&#x27;9500.00&#x27;</span>, <span class="keyword">NULL</span>, <span class="number">30</span>),</span><br><span class="line">       (<span class="number">1013</span>, <span class="string">&#x27;小白龙&#x27;</span>, <span class="number">4</span>, <span class="number">1004</span>, <span class="string">&#x27;2001-12-03&#x27;</span>, <span class="string">&#x27;30000.00&#x27;</span>, <span class="keyword">NULL</span>, <span class="number">20</span>),</span><br><span class="line">       (<span class="number">1014</span>, <span class="string">&#x27;关羽&#x27;</span>, <span class="number">4</span>, <span class="number">1007</span>, <span class="string">&#x27;2002-01-23&#x27;</span>, <span class="string">&#x27;13000.00&#x27;</span>, <span class="keyword">NULL</span>, <span class="number">10</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 添加5个工资等级</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> salaryGrade(grade, loSalary, hisalary)</span><br><span class="line"><span class="keyword">VALUES</span> (<span class="number">1</span>, <span class="number">7000</span>, <span class="number">12000</span>),</span><br><span class="line">       (<span class="number">2</span>, <span class="number">12010</span>, <span class="number">14000</span>),</span><br><span class="line">       (<span class="number">3</span>, <span class="number">14010</span>, <span class="number">20000</span>),</span><br><span class="line">       (<span class="number">4</span>, <span class="number">20010</span>, <span class="number">30000</span>),</span><br><span class="line">       (<span class="number">5</span>, <span class="number">30010</span>, <span class="number">99990</span>);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 1.查询所有员工信息。查询员工编号，员工姓名，工资，职务名称，职务描述</span></span><br><span class="line"><span class="keyword">SELECT</span> emp.id      <span class="string">&#x27;员工编号&#x27;</span>,</span><br><span class="line">       eName       <span class="string">&#x27;员工姓名&#x27;</span>,</span><br><span class="line">       salary      <span class="string">&#x27;工资&#x27;</span>,</span><br><span class="line">       jName       <span class="string">&#x27;职务名称&#x27;</span>,</span><br><span class="line">       description <span class="string">&#x27;职务描述&#x27;</span></span><br><span class="line"><span class="keyword">FROM</span> emp</span><br><span class="line">         <span class="keyword">RIGHT</span> <span class="keyword">JOIN</span> job j <span class="keyword">ON</span> emp.job_id <span class="operator">=</span> j.id;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 2.查询员工编号，员工姓名，工资，职务名称，职务描述，部门名称，部门位置</span></span><br><span class="line"><span class="keyword">SELECT</span> emp.id 员工编号, eName 姓名, salary 工资, jName 职务, description 描述, dName 部门, loc 位置</span><br><span class="line"><span class="keyword">FROM</span> emp</span><br><span class="line">         <span class="keyword">JOIN</span> JavaWebDB2.job j <span class="keyword">on</span> j.id <span class="operator">=</span> emp.job_id</span><br><span class="line">         <span class="keyword">JOIN</span> dept d <span class="keyword">on</span> d.id <span class="operator">=</span> emp.dept_id;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 3.查询员工姓名，工资，工资等级</span></span><br><span class="line"><span class="keyword">SELECT</span> eName, salary, t.grade</span><br><span class="line"><span class="keyword">FROM</span> emp,</span><br><span class="line">     salaryGrade t</span><br><span class="line"><span class="keyword">WHERE</span> salary <span class="keyword">BETWEEN</span> t.loSalary <span class="keyword">AND</span> t.hiSalary;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 4.查询员工姓名，工资，职务名称，职务描述，部门名称，部门位置，工资等级</span></span><br><span class="line"><span class="keyword">SELECT</span> eName 员工姓名, salary 工资, jName 职务名称, description 职务描述, dName 部门名称, loc 部门位置, grade 工资等级</span><br><span class="line"><span class="keyword">FROM</span> emp</span><br><span class="line">         <span class="keyword">JOIN</span> job j <span class="keyword">on</span> emp.job_id <span class="operator">=</span> j.id</span><br><span class="line">         <span class="keyword">JOIN</span> dept d <span class="keyword">on</span> emp.dept_id <span class="operator">=</span> d.id,</span><br><span class="line">     salaryGrade t3</span><br><span class="line"><span class="keyword">WHERE</span> salary <span class="keyword">BETWEEN</span> t3.loSalary <span class="keyword">AND</span> t3.hiSalary;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 5.查询出部门编号、部门名称、部门位置、部门人数</span></span><br><span class="line"><span class="keyword">SELECT</span> dept_id, <span class="built_in">COUNT</span>(<span class="operator">*</span>)</span><br><span class="line"><span class="keyword">FROM</span> emp</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> dept_id;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> d.id,dName,loc,e.count</span><br><span class="line"><span class="keyword">FROM</span> dept d,</span><br><span class="line">     (<span class="keyword">SELECT</span> dept_id, <span class="built_in">COUNT</span>(<span class="operator">*</span>) count <span class="keyword">FROM</span> emp <span class="keyword">GROUP</span> <span class="keyword">BY</span> dept_id) e</span><br><span class="line"><span class="keyword">WHERE</span> d.id <span class="operator">=</span>  e.dept_id;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>事务</p>
+<blockquote>
+<ul>
+<li>原子性（Atomicity）:事务是最小操作单位，要么同时成功，要么同时失败</li>
+<li>一致性（Consistency）：事务完成时，必须使所有数据都保持一致状态</li>
+<li>隔离性（Isolation）：多个事务之间，操作的可见性</li>
+<li>持久性（Durability）：事务一旦提交或回滚，它对数据的改变就是永久的</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 事务 ===================</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> account</span><br><span class="line">(</span><br><span class="line">    id    <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY AUTO_INCREMENT,</span><br><span class="line">    name  <span class="type">VARCHAR</span>(<span class="number">20</span>),</span><br><span class="line">    money <span class="keyword">DOUBLE</span>(<span class="number">10</span>, <span class="number">2</span>)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> account(NAME, MONEY)</span><br><span class="line"><span class="keyword">VALUES</span> (<span class="string">&#x27;张三&#x27;</span>, <span class="number">1000</span>),</span><br><span class="line">       (<span class="string">&#x27;李四&#x27;</span>, <span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> name,money <span class="keyword">FROM</span> account;</span><br><span class="line"><span class="comment">-- 转账事务 =================</span></span><br><span class="line"><span class="comment">-- 开启事务</span></span><br><span class="line"><span class="keyword">BEGIN</span>;</span><br><span class="line"><span class="comment">-- 判断李四余额</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 李四金额 -500</span></span><br><span class="line"><span class="keyword">UPDATE</span> account</span><br><span class="line"><span class="keyword">SET</span> money <span class="operator">=</span> money <span class="operator">-</span> <span class="number">500</span></span><br><span class="line"><span class="keyword">WHERE</span> name <span class="operator">=</span> <span class="string">&#x27;李四&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 出错！！！！</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 张三余额 +500</span></span><br><span class="line"><span class="keyword">UPDATE</span> account</span><br><span class="line"><span class="keyword">SET</span> money <span class="operator">=</span> money <span class="operator">+</span> <span class="number">500</span></span><br><span class="line"><span class="keyword">WHERE</span> name <span class="operator">=</span> <span class="string">&#x27;张三&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 提交事务</span></span><br><span class="line"><span class="keyword">COMMIT</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 回滚事务</span></span><br><span class="line"><span class="keyword">ROLLBACK</span> ;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>基础知识</category>
+      </categories>
+      <tags>
+        <tag>数据库</tag>
+        <tag>持久层</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2021/12/02/hello-world/</url>
+    <content><![CDATA[<p>hexo默认界面，懒得删了。。。。。</p>
+<span id="more"></span>
+
+<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>常见算法</title>
+    <url>/2022/08/29/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<p>写的不多，抽空再学<br>算法，从字面意义上解释，就是用于计算的方法，通过该这种方法可以达到预期的计算结果。目前，被广泛认可的算法专业定义是：算法是模型分析的一组可行的，确定的，有穷的规则。通俗的说，算法也可以理解为一个解题步骤，有一些基本运算和规定的顺序构成。但是从计算机程序设计的角度看，算法由一系列求解问题的指令构成，能根据规范的输入，在有限的时间内获得有效的输出结果。算法代表了用系统的方法来描述解决问题的一种策略机制。</p>
+<span id="more"></span>
+
+<h1 id="常见算法"><a href="#常见算法" class="headerlink" title="常见算法"></a>常见算法</h1><h2 id="查找算法"><a href="#查找算法" class="headerlink" title="查找算法"></a>查找算法</h2><h3 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h3><ul>
+<li>对半查找，每次查找去掉一半，查找的数据必须是有序的</li>
+</ul>
+<ol>
+<li>min max表示当前需要查找的范围</li>
+<li>mid是在min和max中间的</li>
+<li>如果查找的元素在mid的左边，缩小范围时，min不变，max等于mid减一，反之同理</li>
+<li><img src="/images/image-20220828112325766.png" alt="image-20220828112325766"></li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 二分查找</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">binarySearch</span><span class="params">(<span class="type">int</span> number, <span class="type">int</span>[] array)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">min</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">max</span> <span class="operator">=</span> array.length - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (max &lt; min) &#123;				<span class="comment">// 判断所求元素是否存在</span></span><br><span class="line">                <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="type">int</span> <span class="variable">mid</span> <span class="operator">=</span> (max + min) / <span class="number">2</span>;  	<span class="comment">// 获取mid</span></span><br><span class="line">            <span class="keyword">if</span> (array[mid] == number) &#123; </span><br><span class="line">                <span class="keyword">return</span> mid;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (array[mid] &gt; number) &#123;  	<span class="comment">// 判断元素是否在左边</span></span><br><span class="line">                max = mid - <span class="number">1</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (array[mid] &lt; number) &#123;   <span class="comment">// 判断元素是否在右边</span></span><br><span class="line">                min = mid + <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>底层原理</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数据结构</title>
+    <url>/2022/09/03/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</url>
+    <content><![CDATA[<p>数据结构是一种具有一定逻辑关系，在计算机中应用某种存储结构，并且封装了相应操作的数据元素集合。它包含三方面的内容，逻辑关系、存储关系及操作。</p>
+<span id="more"></span>
+
+<h1 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h1><h2 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h2><ul>
+<li><p>先进后出，后进先出</p>
+</li>
+<li><p>一端开口 栈顶；一端封闭 栈底</p>
+</li>
+</ul>
+<h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><ul>
+<li><p>先进先出，后进后出</p>
+</li>
+<li><p>一端开口 后端；一端开头 前端</p>
+</li>
+</ul>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><ul>
+<li>在内存中一块在一起的元素，是一种<strong>查询快、增删慢</strong>的数据模型</li>
+<li>查询速度快：通过地址值和索引定位，查询任意数据时间复杂度相同</li>
+<li>删除效率低：将一个数据删除后，后面的每个数据都需要前移</li>
+<li>添加（插入）效率极地：添加位置后每个数据后移，再添加元素</li>
+</ul>
+<h2 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h2><ul>
+<li><p>在内存中是分散的</p>
+</li>
+<li><p>每个存储单位是一个节点，是一个单独的对象</p>
+<ul>
+<li>节点有自己的地址</li>
+<li>头节点存储第一个节点的地址（单向链表）或者存储第一个节点的地址和最后一个节点的地址（双向链表）</li>
+<li>单向链表中节点中存储具体数据和下一个节点的地址</li>
+<li>双向链表中节点中存储前一个节点的地址、具体数据、下一个节点的地址<img src="/images/image-20220901221015555.png" alt="image-20220901221015555"></li>
+</ul>
+</li>
+<li><p>链表增删较快、查询慢、首尾操作极快</p>
+</li>
+</ul>
+<hr>
+<h2 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h2><ol>
+<li><p>树形数据结构</p>
+</li>
+<li><p>度：每个节点的子节点数量</p>
+</li>
+<li><p>树高：树的总层数</p>
+</li>
+<li><p>根节点：最顶层的节点</p>
+</li>
+<li><p>左子节点：左下方的节点；右子节点：右下方的节点</p>
+</li>
+<li><p>根节点的左子树</p>
+<p><img src="/images/image-20220903093328908.png" alt="image-20220903093328908"></p>
+</li>
+<li><p>二叉树中，任意节点的度&lt;&#x3D; 2</p>
+</li>
+<li><p>每个节点有一个父节点，一个左子节点，一个右子节点</p>
+</li>
+<li><p>节点的结构</p>
+</li>
+</ol>
+<p><img src="/images/image-20220903092701929.png" alt="image-20220903092701929"></p>
+<hr>
+<h3 id="二叉查找树"><a href="#二叉查找树" class="headerlink" title="二叉查找树"></a>二叉查找树</h3><ul>
+<li>每个节点上最多有两个子节点</li>
+<li>任意节点左子树上的值都小于当前节点</li>
+<li>任意节点右子树上的值都大于当前节点</li>
+</ul>
+<h4 id="存储规则"><a href="#存储规则" class="headerlink" title="存储规则"></a>存储规则</h4><ul>
+<li>小的存左边</li>
+<li>大的存右边</li>
+<li>一样的不存</li>
+</ul>
+<hr>
+<h3 id="二叉树遍历"><a href="#二叉树遍历" class="headerlink" title="二叉树遍历"></a>二叉树遍历</h3><h4 id="前序遍历"><a href="#前序遍历" class="headerlink" title="前序遍历"></a>前序遍历</h4><p>从根节点开始，然后按照当前节点，左子节点，右子节点的顺序遍历</p>
+<h4 id="中序遍历（常用）"><a href="#中序遍历（常用）" class="headerlink" title="中序遍历（常用）"></a>中序遍历（常用）</h4><p>从最左边的子节点开始，然后按照左子节点，当前节点，右子节点的顺序遍历。</p>
+<blockquote>
+<p>遍历出来的数据（二叉查找树）是从大到小排序的，因此最常用</p>
+</blockquote>
+<h4 id="后序遍历"><a href="#后序遍历" class="headerlink" title="后序遍历"></a>后序遍历</h4><p>从最左边的子节点开始，然后按照左子节点，右子节点，当前节点的顺序遍历</p>
+<h4 id="层序遍历"><a href="#层序遍历" class="headerlink" title="层序遍历"></a>层序遍历</h4><p>从根节点开始一层一层的遍历</p>
+<hr>
+<h3 id="平衡二叉树"><a href="#平衡二叉树" class="headerlink" title="平衡二叉树"></a>平衡二叉树</h3><p><em><strong>任意节点</strong></em>左右子树高度差不超过1</p>
+<h4 id="左旋"><a href="#左旋" class="headerlink" title="左旋"></a>左旋</h4><ul>
+<li>确定支点：从添加的节点开始，不断的往父节点找不平衡的节点</li>
+</ul>
+<h5 id="支点非根节点"><a href="#支点非根节点" class="headerlink" title="支点非根节点"></a>支点非根节点</h5><ol>
+<li>以不平衡的点作为支点</li>
+<li>把支点左旋降级，变成左子节点</li>
+<li>晋升原来的右子节点</li>
+</ol>
+<h5 id="支点为根节点"><a href="#支点为根节点" class="headerlink" title="支点为根节点"></a>支点为根节点</h5><ol>
+<li>以不平衡的点作为支点</li>
+<li>将根节点的右侧往左拉</li>
+<li>原先的右子节点变成新的父节点，并把多余的左子节点出让，给已经降级的根节点当右子节点</li>
+</ol>
+<h4 id="右旋"><a href="#右旋" class="headerlink" title="右旋"></a>右旋</h4><p>与左旋同理</p>
+<h4 id="需要旋转的四种情况"><a href="#需要旋转的四种情况" class="headerlink" title="需要旋转的四种情况"></a>需要旋转的四种情况</h4><ol>
+<li>左左：当根节点左子树的左子树有节点插入，导致二叉树不平衡<ul>
+<li>一次右旋即可</li>
+</ul>
+</li>
+<li>左右：当根节点左子树的右子树右节点插入，导致二叉树不平衡<ul>
+<li>先局部左旋，在整体右旋</li>
+</ul>
+</li>
+<li>右右：当根节点右子树的右子树右节点插入，导致二叉树不平衡<ul>
+<li>一次左转即可</li>
+</ul>
+</li>
+<li>右左：当根节点右子树的左子树有节点插入，导致二叉树不平衡<ul>
+<li>先局部右旋，在整体左旋</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h3><ul>
+<li>是一个二叉查找树</li>
+<li>但不是高度平衡的</li>
+<li>条件：特有的红黑规则</li>
+</ul>
+<h4 id="红黑规则"><a href="#红黑规则" class="headerlink" title="红黑规则"></a>红黑规则</h4><ol>
+<li>每个节点或是红色，或是黑色</li>
+<li>根节点必须是黑色</li>
+<li>如果一个节点没有子节点或者父节点，则该节点相应的指针属性值为Nil,这些Nil视为叶结点，每个叶结点（Nil）是黑色的</li>
+<li>如果一个节点是红色，那么它的子节点必须是黑色（不能出现两个红色节点相连的情况）</li>
+<li>对每一个即诶的那，从该节点到其所有后代叶结点的简单路径上，均包含相同数目的黑色节点</li>
+</ol>
+<h4 id="添加规则"><a href="#添加规则" class="headerlink" title="添加规则"></a>添加规则</h4><ul>
+<li>默认颜色：添加节点的默认颜色是红色</li>
+</ul>
+<p> <img src="/images/image-20220903145748193.png" alt="image-20220903145748193"></p>
+]]></content>
+      <categories>
+        <category>底层原理</category>
+      </categories>
+      <tags>
+        <tag>数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>集合</title>
+    <url>/2022/09/03/%E9%9B%86%E5%90%88%E4%BD%93%E7%B3%BB/</url>
+    <content><![CDATA[<p>Java的部分集合说明与展示。<br>什么是集合（Collection）？集合就是“由若干个确定的元素所构成的整体”</p>
+<span id="more"></span>
+
+<h2 id="单列集合-collection"><a href="#单列集合-collection" class="headerlink" title="单列集合 collection"></a>单列集合 collection</h2><h3 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h3><h4 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h4><ol>
+<li><p>迭代器在遍历集合的时候是不依赖索引的</p>
+</li>
+<li><p>迭代器需要掌握三个方法</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 迭代器</span></span><br><span class="line">        ArrayList&lt;String&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        list.add(<span class="string">&quot;aaa&quot;</span>);</span><br><span class="line">        list.add(<span class="string">&quot;bbb&quot;</span>);</span><br><span class="line">        list.add(<span class="string">&quot;ccc&quot;</span>);</span><br><span class="line">        list.add(<span class="string">&quot;ddd&quot;</span>);</span><br><span class="line"></span><br><span class="line">        Iterator&lt;String&gt; it = list.iterator();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (it.hasNext())&#123;</span><br><span class="line">            <span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> it.next();</span><br><span class="line">            System.out.println(str);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>迭代器的四个细节</p>
+<ul>
+<li>如果当前位置没有元素，继续获取会报错 <em><strong>NoSuchElementException</strong></em></li>
+<li>迭代器遍历完成之后，指针不会复位，如果需要重新遍历，需要再次创建新的迭代器对象</li>
+<li>循环中只能使用一次next方法，否则会遍历到没有元素的位置，报错<em><strong>NoSuchElementException</strong></em></li>
+<li>迭代器遍历时，不能使用集合的方法进行增加或者删除，只能使用迭代器自带的remove——方法删除</li>
+</ul>
+</li>
+</ol>
+<h4 id="增强for"><a href="#增强for" class="headerlink" title="增强for"></a>增强for</h4><p>不能进行删除</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 增强for遍历，本质上还是迭代器（iterator）</span></span><br><span class="line">        <span class="keyword">for</span> (String str : list)&#123;</span><br><span class="line">            System.out.println(str);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="lambda表达式"><a href="#lambda表达式" class="headerlink" title="lambda表达式"></a>lambda表达式</h4><p>不能进行删除</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// forEach方法遍历每个元素，传递到s</span></span><br><span class="line">list.forEach(s -&gt; System.out.println(s));</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="list-系列"><a href="#list-系列" class="headerlink" title="list 系列"></a>list 系列</h3><hr>
+<blockquote>
+<p>添加的元素是<strong>有序</strong>（存的顺序和取是顺序相同）、可重复、有索引</p>
+</blockquote>
+<h4 id="list-特有方法"><a href="#list-特有方法" class="headerlink" title="list 特有方法"></a>list 特有方法</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 添加元素，在指定位置插如元素，原来索引上的元素会依次向后移</span></span><br><span class="line">      list.add(<span class="number">3</span>,<span class="string">&quot;fff&quot;</span>);</span><br><span class="line">      System.out.println(list);</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 删除元素，删除指定位置的元素，返回被删除的元素</span></span><br><span class="line">      System.out.println(list.remove(<span class="number">3</span>));</span><br><span class="line">      System.out.println(list);</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 修改元素，将指定位置的元素更改为提供的元素，返回被修改的元素</span></span><br><span class="line">      System.out.println(list.set(<span class="number">2</span>, <span class="string">&quot;CCC&quot;</span>));</span><br><span class="line">      System.out.println(list);</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 获取元素，获取指定位置的元素</span></span><br><span class="line">      System.out.println(list.get(<span class="number">4</span>));</span><br></pre></td></tr></table></figure>
+
+<h4 id="list-五种遍历方式"><a href="#list-五种遍历方式" class="headerlink" title="list 五种遍历方式"></a>list 五种遍历方式</h4><ol>
+<li><p>迭代器遍历</p>
+<p>遍历的过程中需要删除时使用</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 1.迭代器遍历</span></span><br><span class="line">        Iterator&lt;String&gt; it = list.iterator();</span><br><span class="line">        <span class="keyword">while</span> (it.hasNext())&#123;</span><br><span class="line">            <span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> it.next();</span><br><span class="line">            <span class="keyword">if</span> (str.equals(<span class="string">&quot;bbb&quot;</span>))&#123;</span><br><span class="line">                it.remove(); <span class="comment">// 删除元素</span></span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(str);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>列表迭代器遍历</p>
+<p>遍历的过程中需要添加元素时使用</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 2.列表迭代器遍历</span></span><br><span class="line">        <span class="comment">// 在遍历过程中可以添加元素</span></span><br><span class="line">        ListIterator&lt;String&gt; listIt = list.listIterator();</span><br><span class="line">        <span class="keyword">while</span> (listIt.hasNext())&#123;</span><br><span class="line">            <span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> listIt.next();</span><br><span class="line">            <span class="keyword">if</span> (str.equals(<span class="string">&quot;ccc&quot;</span>))&#123;</span><br><span class="line">                listIt.add(<span class="string">&quot;CCC&quot;</span>); <span class="comment">// 添加元素</span></span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(str);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>增强for遍历</p>
+<p>仅仅需要遍历时使用</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 3.增强for</span></span><br><span class="line">        <span class="keyword">for</span> (String str: list)&#123;</span><br><span class="line">            System.out.println(str);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Lambda表达式</p>
+<p>仅仅需要遍历时使用</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 4.lambda表达式</span></span><br><span class="line">        list.forEach( s -&gt; System.out.println(s) );</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>普通for遍历</p>
+<p>如果遍历的时候需要操作索引时使用</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 5.普通for循环</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; list.size(); i++) &#123;</span><br><span class="line">            System.out.println(list.get(i));</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="set-系列"><a href="#set-系列" class="headerlink" title="set 系列"></a>set 系列</h3><hr>
+<h4 id="HashSet"><a href="#HashSet" class="headerlink" title="HashSet"></a>HashSet</h4><blockquote>
+<p>添加的元素是<strong>无序</strong>、不重复、无索引</p>
+</blockquote>
+<ul>
+<li><p>底层原理</p>
+<ul>
+<li><p>HashSet集合底层采取哈希表存储数据</p>
+</li>
+<li><p>哈希表是一种对于增删改查数据性能都较好的结构</p>
+</li>
+</ul>
+</li>
+<li><p>哈希表组成</p>
+<ul>
+<li>jdk8之前：数组+链表</li>
+<li>jdk8开始：数组+链表+红黑树</li>
+</ul>
+</li>
+<li><p>哈希值</p>
+<ul>
+<li><p>根据hashCode方法算出来的int类型的整数</p>
+</li>
+<li><p>该方法定义在Object类中，所有对象都可以调用，默认使用地址值进行计算</p>
+</li>
+<li><p>一般情况下，会重写hashCode方法，利用对象内部的属性值计算哈希值</p>
+<blockquote>
+<p>如果集合中存入的是自定义对象，必须要重写hashCode和equals方法</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 1.创建对象</span></span><br><span class="line">      <span class="type">Student</span> <span class="variable">s1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Student</span>(<span class="string">&quot;张三&quot;</span>,<span class="number">20</span>);</span><br><span class="line">      <span class="type">Student</span> <span class="variable">s2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Student</span>(<span class="string">&quot;张三&quot;</span>,<span class="number">20</span>);</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 2.如果没有重写hashCode方法，计算出的hash值是不同的</span></span><br><span class="line">      System.out.println(s1.hashCode());<span class="comment">// 1523554304</span></span><br><span class="line">      System.out.println(s2.hashCode());<span class="comment">// 1175962212</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 3.重写hashCode方法，计算的hash值就是相同的</span></span><br><span class="line">System.out.println(s1.hashCode());<span class="comment">// 24022540</span></span><br><span class="line">System.out.println(s2.hashCode());<span class="comment">// 24022540</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>存入数据过程</p>
+<ol>
+<li><p>创建一个默认长度16,默认 <em>加载因</em>  为0.75的数组</p>
+<blockquote>
+<p>当数组存入的数据达到（16*0.75&#x3D;12）个时，数组就会扩容两倍</p>
+</blockquote>
+</li>
+<li><p>根据元素的哈希值跟数组的长度计算出应存入的位置</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">index</span> <span class="operator">=</span> (数组长度 -<span class="number">1</span>) &amp; 哈希值</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>判断当前位置是否为null,如果是null就直接存入</p>
+</li>
+<li><p>如果不为null,调用equals方法比较属序值</p>
+</li>
+<li><p>一样就不存入数据               不一样则存入数据，形成链表</p>
+<ul>
+<li><p>jdk8之前：新元素存入数组，老元素挂在新元素下面</p>
+</li>
+<li><p>jkd8以后：新元素直接挂在老元素下面</p>
+<blockquote>
+<p>当链表长度大于8且数组长度大于等于64时，当前链表就会转为红黑树</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h4 id="LinkedHashSet"><a href="#LinkedHashSet" class="headerlink" title="LinkedHashSet"></a>LinkedHashSet</h4><blockquote>
+<ul>
+<li><p>有序、不重复、无索引</p>
+</li>
+<li><p>这里的有序是指保证存储和取出的元素顺序一致</p>
+</li>
+<li><p>HashSet的子类，底层依然是哈希表，只是每个元素多了一个双链表的机制记录存储的顺序</p>
+</li>
+</ul>
+</blockquote>
+<h4 id="TreeSet"><a href="#TreeSet" class="headerlink" title="TreeSet"></a>TreeSet</h4><blockquote>
+<p>可排序、不重复、无索引</p>
+<p>底层基于红黑树实现排序，增删改查性能都很好</p>
+</blockquote>
+<ul>
+<li><p>自定义排序规则的方式</p>
+<ol>
+<li><p>Javabean类实现Comparable接口，指定比较规则</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> class 类名 <span class="keyword">implements</span> <span class="title class_">Comparable</span>&lt;TestStudent&gt; &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="comment">// 返回值</span></span><br><span class="line">    <span class="comment">// 负数存在红黑树左边</span></span><br><span class="line">    <span class="comment">// 正数存在红黑树右边</span></span><br><span class="line">    <span class="comment">// 0表示已经存在，丢弃</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">compareTo</span><span class="params">(类名 o)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.参数 - o.参数;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建集合时，自定义Compartor比较器对象，指定比较规则</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">TreeSet&lt;类名&gt; ts = <span class="keyword">new</span> <span class="title class_">TreeSet</span>&lt;&gt;(<span class="keyword">new</span> <span class="title class_">Comparator</span>&lt;类名&gt;() &#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">    <span class="comment">// 返回值与方式一同理		</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">compare</span><span class="params">(类名 o1, 类名 o2)</span> &#123;</span><br><span class="line">       	<span class="keyword">return</span> o1.参数 - o2.参数;</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure></li>
+</ol>
+<blockquote>
+<p>默认使用方式一，如果方式一不满足需求，使用方式二</p>
+<p>如果两种方式都存在，则使用的是第二种排序方式</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><ul>
+<li>如果想要集合中的元素可重复<ul>
+<li>使用用ArrayList集合，基于数组（用的最多）</li>
+</ul>
+</li>
+<li>如果想要集合中的元素可重复，而且当前的增删改查操作明显多于查询<ul>
+<li>使用LinkedList集合，基于链表</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>如果想对集合中的元素去重<ul>
+<li>使用HashSet集合，基于哈希表（用的最多）</li>
+</ul>
+</li>
+<li>如果相对集合中的元素去重并保证存取数据<ul>
+<li>使用LinkedHashSet集合，基于哈希表的双链表，效率低于HashSet</li>
+</ul>
+</li>
+<li>如果想对集合中的元素进行排序<ul>
+<li>使用TreeSet集合，基于红黑树</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Java基础</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+</search>
