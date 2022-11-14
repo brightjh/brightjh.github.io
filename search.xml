@@ -1,6 +1,279 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Mybatis入门</title>
+    <url>/2022/09/13/Mybatis%20%E5%85%A5%E9%97%A8/</url>
+    <content><![CDATA[<p>MyBatis 是一款优秀的持久层框架，它支持自定义 SQL、存储过程以及高级映射。MyBatis 免除了几乎所有的 JDBC 代码以及设置参数和获取结果集的工作。MyBatis 可以通过简单的 XML 或注解来配置和映射原始类型、接口和 Java POJO（Plain Old Java Objects，普通老式 Java 对象）为数据库中的记录。</p>
+<span id="more"></span>
+
+
+<h1 id="Mybatis-入门"><a href="#Mybatis-入门" class="headerlink" title="Mybatis 入门"></a>Mybatis 入门</h1><p><a href="https://mybatis.net.cn/index.html">https://mybatis.net.cn/index.html</a></p>
+<ol>
+<li><p>创建Maven项目，pom.xml中导入mybatis依赖</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- mybatis依赖 --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.5.6<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">      </span><br><span class="line">      <span class="comment">&lt;!-- 连接数据库 --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mariadb.jdbc<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mariadb-java-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.0.7<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写mybatis核心配置文件 – mybatis-config.xml</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span> ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">configuration</span></span></span><br><span class="line"><span class="meta">        <span class="keyword">PUBLIC</span> <span class="string">&quot;-//mybatis.org//DTD Config 3.0//EN&quot;</span></span></span><br><span class="line"><span class="meta">        <span class="string">&quot;http://mybatis.org/dtd/mybatis-3-config.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">environments</span> <span class="attr">default</span>=<span class="string">&quot;development&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">&quot;development&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">&quot;JDBC&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">&quot;POOLED&quot;</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!--数据库连接信息 --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;driver&quot;</span> <span class="attr">value</span>=<span class="string">&quot;org.mariadb.jdbc.Driver&quot;</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;url&quot;</span> <span class="attr">value</span>=<span class="string">&quot;jdbc:mariadb://127.0.0.1:3306/mybatis&quot;</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> <span class="attr">value</span>=<span class="string">&quot;root&quot;</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> <span class="attr">value</span>=<span class="string">&quot;ROOT&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">environment</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">environments</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 加载sql映射文件 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">&quot;UserMapper.xml&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>加载sql映射文件 – UserMapper.xml</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span> ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">mapper</span></span></span><br><span class="line"><span class="meta">        <span class="keyword">PUBLIC</span> <span class="string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span></span></span><br><span class="line"><span class="meta">        <span class="string">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">&quot;test&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- namespace 名称空间--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectAll&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;top.brightzm.pojo.User&quot;</span>&gt;</span></span><br><span class="line">        select *</span><br><span class="line">        from tb_user;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>进行编码</p>
+<ol>
+<li><p>定义pojo类</p>
+</li>
+<li><p>加载核心配置文件，获取sqlFactory对象</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 1.加载mybatis核心配置文件，获取sqlSessionFactory</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">resource</span> <span class="operator">=</span> <span class="string">&quot;mybatis.config.xml&quot;</span>;</span><br><span class="line">        <span class="type">InputStream</span> <span class="variable">inputStream</span> <span class="operator">=</span> Resources.getResourceAsStream(resource);</span><br><span class="line">        <span class="type">SqlSessionFactory</span> <span class="variable">sqlSessionFactory</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SqlSessionFactoryBuilder</span>().build(inputStream);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取sqlSession对象，执行sql语句</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 2.获取sqlSession对象，执行sql语句</span></span><br><span class="line">        <span class="type">SqlSession</span> <span class="variable">sqlSession</span> <span class="operator">=</span> sqlSessionFactory.openSession();</span><br><span class="line"></span><br><span class="line">        List&lt;User&gt; users = sqlSession.selectList(<span class="string">&quot;test.selectAll&quot;</span>);</span><br><span class="line">        System.out.println(users);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>释放资源</p>
+</li>
+</ol>
+</li>
+</ol>
+<hr>
+<h1 id="Mapper-代理开发"><a href="#Mapper-代理开发" class="headerlink" title="Mapper 代理开发"></a>Mapper 代理开发</h1><ol>
+<li>定义与sql映射文件同名的Mapper接口，并且将Mapper接口和SQL映射文件放着在同一目录下</li>
+</ol>
+<blockquote>
+<p>MAVEN项目下，配置文件必须存放在 src&#x2F;resource目录下</p>
+<p>可以在resource目录下创建路径与接口同名路径，编译后就会处在同一目录下，如图</p>
+<p>路径更改后，mybatis-config.xml中也要同步更改映射文件的路径</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 加载sql映射文件 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">&quot;top/brightzm/mapper/UserMapper.xml&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如果Mapper接口名称和SQL映射文件名称相同，并在同一目录下，则可以使用包扫描的方式简化sql映射文件加载</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 加载sql映射文件 --&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- &lt;mapper resource=&quot;top/brightzm/mapper/UserMapper.xml&quot;/&gt;--&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">&lt;!-- Mapper代理开发方式 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">&quot;top.brightzm.mapper&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p><img src="/images/image-20220911195311511.png" alt="image-20220911195311511"></p>
+<p><img src="/images/image-20220911195642386.png" alt="image-20220911195642386"></p>
+<ol start="2">
+<li><p>设置sql映射文件的namespace属性为Mapper接口全限定名 – UserMapper.xml</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span> ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">mapper</span></span></span><br><span class="line"><span class="meta">        <span class="keyword">PUBLIC</span> <span class="string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span></span></span><br><span class="line"><span class="meta">        <span class="string">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">&quot;top.brightzm.mapper.UserMapper&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- namespace 名称空间--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectAll&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;top.brightzm.pojo.User&quot;</span>&gt;</span></span><br><span class="line">        select *</span><br><span class="line">        from tb_user;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在Mapper接口中定义方法，方法名就是sql映射文件中sql语句的id，并保持参数类型和返回值类型一致</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;User&gt; <span class="title function_">selectAll</span><span class="params">()</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>进行编码</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 通过sqlSession的getMapper方法获取Mapper接口的代理对象</span></span><br><span class="line">      <span class="type">UserMapper</span> <span class="variable">userMapper</span> <span class="operator">=</span> sqlSession.getMapper(UserMapper.class);</span><br><span class="line">      <span class="comment">// 调用方法</span></span><br><span class="line">      List&lt;User&gt; users = userMapper.selectAll();</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="Mybaits核心配置文件"><a href="#Mybaits核心配置文件" class="headerlink" title="Mybaits核心配置文件"></a>Mybaits核心配置文件</h1><ol>
+<li><p>文件结构</p>
+<blockquote>
+<p>配置各个标签，需要严格遵守前后顺序</p>
+</blockquote>
+</li>
+</ol>
+<p><img src="/images/image-20220911205135532.png" alt="image-20220911205135532"></p>
+<ol start="2">
+<li><p>类型别名</p>
+<p>类型别名可为 Java 类型设置一个缩写名字。 它仅用于 XML 配置，意在降低冗余的全限定类名书写</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">mybaits-config.xml </span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">typeAliases</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 类型别名 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">&quot;top.brightzm.pojo&quot;</span>/&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">typeAliases</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">UserMapper.xml</span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectAll&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;user&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+      <categories>
+        <category>JavaWeb</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>数据库</tag>
+        <tag>持久层</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SSM整合</title>
+    <url>/2022/11/13/2022-11-13-SSM%E6%95%B4%E5%90%88/</url>
+    <content><![CDATA[<p>spring framework  + spring mvc + mybatis整合,思路整理与注解方式实现整合</p>
+<p>如有错误,请指正</p>
+<span id="more"></span>
+
+
+
+<h1 id="思路整理"><a href="#思路整理" class="headerlink" title="思路整理"></a>思路整理</h1><h2 id="框架之间的关系"><a href="#框架之间的关系" class="headerlink" title="框架之间的关系"></a>框架之间的关系</h2><p>spring framework(以下简称 spring)与spring mvc一样,都是管理java bean的容器.spring负责管理持久层与业务层相关的bean,也就是为dao和service提供bean,而spring mvc是为表现层提供bean,也就是为controller提供bean.spring和spring mvc也是一个父子容器的关系,spring是spring mvc的父容器,因此spring mvc可以访问spring容器,而反之则不行.两者也是高度整合的.</p>
+<p>mybatis是持久层的框架,与spring关系不大,也是整合工作中的重点</p>
+<p>mybatis有一个致命缺点,配置实在太麻烦了…</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span> ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">configuration</span></span></span><br><span class="line"><span class="meta">        <span class="keyword">PUBLIC</span> <span class="string">&quot;-//mybatis.org//DTD Config 3.0//EN&quot;</span></span></span><br><span class="line"><span class="meta">        <span class="string">&quot;http://mybatis.org/dtd/mybatis-3-config.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">typeAliases</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 实体类别名 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">&quot;top.brightzm.domain&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">typeAliases</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">environments</span> <span class="attr">default</span>=<span class="string">&quot;development&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">&quot;development&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">&quot;JDBC&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">&quot;POOLED&quot;</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!-- 数据源 --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;driver&quot;</span> <span class="attr">value</span>=<span class="string">&quot;org.mariadb.jdbc.Driver&quot;</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;url&quot;</span> <span class="attr">value</span>=<span class="string">&quot;jdbc:mariadb://127.0.0.1:3306/spring_db&quot;</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> <span class="attr">value</span>=<span class="string">&quot;root&quot;</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> <span class="attr">value</span>=<span class="string">&quot;root&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">environment</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">environments</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 映射文件位置 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">&quot;top.brightzm.dao&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>执行sql语句也麻烦…</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 1.加载mybatis核心配置文件</span></span><br><span class="line"><span class="type">String</span> <span class="variable">resource</span> <span class="operator">=</span> <span class="string">&quot;mybatis-config.xml&quot;</span>;</span><br><span class="line"><span class="type">InputStream</span> <span class="variable">inputStream</span> <span class="operator">=</span> Resources.getResourceAsStream(resource);</span><br><span class="line"><span class="comment">// 2.创建sqlsession对象</span></span><br><span class="line"><span class="type">SqlSessionFactory</span> <span class="variable">sqlSessionFactory</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SqlSessionFactoryBuilder</span>().build(inputStream);</span><br><span class="line"><span class="comment">// 3.获取sqlSession对象</span></span><br><span class="line"><span class="type">SqlSession</span> <span class="variable">sqlSession</span> <span class="operator">=</span> sqlSessionFactory.openSession();</span><br><span class="line"><span class="comment">// 4.获取mapper代理对象</span></span><br><span class="line"><span class="type">BookDao</span> <span class="variable">bookDao</span> <span class="operator">=</span> sqlSession.getMapper(BookDao.class);</span><br><span class="line"><span class="comment">// 5.调用接口方法</span></span><br><span class="line">List&lt;Book&gt; books = BookDao.selectAll();</span><br></pre></td></tr></table></figure>
+
+<p>不过有了spring就一切好说~</p>
+<p>mybatis这些什么配置统一变成bean,让spring管理去</p>
+<ol>
+<li><p>数据源</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="keyword">public</span> DataSource <span class="title function_">dataSource</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">DruidDataSource</span> <span class="variable">dataSource</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DruidDataSource</span>();</span><br><span class="line">    dataSource.setDriverClassName(className);</span><br><span class="line">    dataSource.setUrl(url);</span><br><span class="line">    dataSource.setUsername(username);</span><br><span class="line">    dataSource.setPassword(password);</span><br><span class="line">    <span class="keyword">return</span> dataSource;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>sqlSessionFactory </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="keyword">public</span> SqlSessionFactoryBean <span class="title function_">sqlSessionFactoryBean</span><span class="params">(DataSource dataSource)</span>&#123;</span><br><span class="line">    <span class="type">SqlSessionFactoryBean</span> <span class="variable">sessionFactoryBean</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SqlSessionFactoryBean</span>();</span><br><span class="line">    <span class="comment">// 设置数据源</span></span><br><span class="line">    sessionFactoryBean.setDataSource(dataSource);</span><br><span class="line">    <span class="comment">// 设置实体类别名</span></span><br><span class="line">    sessionFactoryBean.setTypeAliasesPackage(<span class="string">&quot;top.brightzm.domain&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> sessionFactoryBean;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>映射文件扫描</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="keyword">public</span> MapperScannerConfigurer <span class="title function_">mapperScannerConfigurer</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="comment">// 映射文件扫描</span></span><br><span class="line">    <span class="type">MapperScannerConfigurer</span> <span class="variable">mapperScannerConfigurer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MapperScannerConfigurer</span>();</span><br><span class="line">    mapperScannerConfigurer.setBasePackage(<span class="string">&quot;top.brightzm.dao&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> mapperScannerConfigurer;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>调用接口方法</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> BookDao bookDao;</span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> List&lt;Book&gt; <span class="title function_">selectAll</span><span class="params">()</span> &#123;</span><br><span class="line">    List&lt;Book&gt; books = bookDao.selectAll();</span><br><span class="line">    <span class="keyword">return</span> books;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="具体流程"><a href="#具体流程" class="headerlink" title="具体流程"></a>具体流程</h2><ol>
+<li><p>创建工程</p>
+<p>废话…</p>
+</li>
+<li><p>添加依赖</p>
+<p>也是废话…</p>
+</li>
+<li><p>编写web项目入口配置类</p>
+<p>这个不是废话</p>
+<p>编写web项目入口配置类,当tomcat启动时自动加载spring和spring mvc配置,启动spring和spring mvc容器</p>
+</li>
+<li><p>编写配置类</p>
+</li>
+<li><p>dao domain service controller…. 吧啦吧啦</p>
+</li>
+<li><p>测试!!!</p>
+</li>
+</ol>
+<h1 id="开始整合"><a href="#开始整合" class="headerlink" title="开始整合"></a>开始整合</h1><h2 id="添加依赖"><a href="#添加依赖" class="headerlink" title="添加依赖"></a>添加依赖</h2><blockquote>
+<p>pom.xml 文件中</p>
+</blockquote>
+<h3 id="核心依赖"><a href="#核心依赖" class="headerlink" title="核心依赖"></a>核心依赖</h3><ol>
+<li><p>spring webmvc</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-webmvc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.2.22.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>spring webmvc含有的资源</p>
+<blockquote>
+<p>spring 和 spring mvc的全包含在其中,所以只要导入spring-webmvc一个依赖</p>
+</blockquote>
+<p><img src="/./images/image-20221114152931328.png" alt="image-20221114152931328"></p>
+</li>
+</ol>
+<h3 id="servlet"><a href="#servlet" class="headerlink" title="servlet"></a>servlet</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.servlet<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>javax.servlet-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.0.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">scope</span>&gt;</span>provided<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="json数据转换"><a href="#json数据转换" class="headerlink" title="json数据转换"></a>json数据转换</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.fasterxml.jackson.core<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jackson-databind<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.13.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="数据源相关"><a href="#数据源相关" class="headerlink" title="数据源相关"></a>数据源相关</h3><ol>
+<li><p>spring jdbc</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-jdbc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.2.22.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>数据库连接驱动</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mariadb.jdbc<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mariadb-java-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.0.7<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>druid数据库连接池</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>druid<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.14<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="Mybatis-相关"><a href="#Mybatis-相关" class="headerlink" title="Mybatis 相关"></a>Mybatis 相关</h3><ol>
+<li><p>mybatis</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mariadb.jdbc<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mariadb-java-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.0.7<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>mybatis整合spring</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-spring<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0.6<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h3><ol>
+<li><p>spring test</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-test<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.2.22.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>junit</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.13.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="x3D-x3D-编写配置类-x3D-x3D"><a href="#x3D-x3D-编写配置类-x3D-x3D" class="headerlink" title="&#x3D;&#x3D;编写配置类&#x3D;&#x3D;"></a>&#x3D;&#x3D;<strong>编写配置类</strong>&#x3D;&#x3D;</h2><blockquote>
+<p>config目录下</p>
+</blockquote>
+<h3 id="web核心配置"><a href="#web核心配置" class="headerlink" title="web核心配置"></a>web核心配置</h3><p><code>ServletConfig</code>,继承<code>AbstractAnnotationConfigDispatcherServletInitializer</code>类</p>
+<ul>
+<li><p>Abstract^抽象^Annotation^注解^Config^配置^DispatcherServlet^前置控制器^Initializer^初始化^</p>
+</li>
+<li><p>看下百度百科对DispatcherServlet的解释吧</p>
+<blockquote>
+<p>DispatcherServlet是前置控制器，配置在web.xml文件中的。拦截匹配的请求，Servlet拦截匹配规则要自己定义，把拦截下来的请求，依据相应的规则分发到目标Controller来处理，是配置spring MVC的第一步。<br>DispatcherServlet是前端控制器设计模式的实现，提供Spring Web MVC的集中访问点，而且负责职责的分派，而且与Spring IoC容器无缝集成，从而可以获得Spring的所有好处。</p>
+</blockquote>
+</li>
+</ul>
+<p>继承该类之后需重写三个方法</p>
+<ul>
+<li><code>getRootConfigClasses</code> 获取spring配置类</li>
+<li><code>getServletConfigClasses</code> 获取spring mvc配置类</li>
+<li><code>getServletMappings</code> 拦截请求</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ServletConfig</span> <span class="keyword">extends</span> <span class="title class_">AbstractAnnotationConfigDispatcherServletInitializer</span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> Class&lt;?&gt;[] getRootConfigClasses() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Class</span>[]&#123;SpringConfig.class&#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> Class&lt;?&gt;[] getServletConfigClasses() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Class</span>[]&#123;SpringmvcConfig.class&#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> String[] getServletMappings() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">String</span>[]&#123;<span class="string">&quot;/&quot;</span>&#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="数据源配置"><a href="#数据源配置" class="headerlink" title="数据源配置"></a>数据源配置</h3><p><code>jdbc.properties</code></p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">jdbc.driverClassName</span>=<span class="string">org.mariadb.jdbc.Driver</span></span><br><span class="line"><span class="attr">jdbc.url</span>=<span class="string">jdbc:mariadb://localhost:3306/spring_db</span></span><br><span class="line"><span class="attr">jdbc.username</span>=<span class="string">root</span></span><br><span class="line"><span class="attr">jdbc.password</span>=<span class="string">root</span></span><br></pre></td></tr></table></figure>
+
+<p><code>JdbcConfig</code>配置数据源bean,还有spring的事务管理</p>
+<ul>
+<li>为变量赋值 @Value</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">JdbcConfig</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;jdbc.driverClassName&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String className;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;jdbc.url&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String url;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;jdbc.username&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String username;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;jdbc.password&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> DataSource <span class="title function_">dataSource</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">DruidDataSource</span> <span class="variable">dataSource</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DruidDataSource</span>();</span><br><span class="line">        dataSource.setDriverClassName(className);</span><br><span class="line">        dataSource.setUrl(url);</span><br><span class="line">        dataSource.setUsername(username);</span><br><span class="line">        dataSource.setPassword(password);</span><br><span class="line">        <span class="keyword">return</span> dataSource;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> PlatformTransactionManager <span class="title function_">transactionManager</span><span class="params">(DataSource dataSource)</span>&#123;</span><br><span class="line">        <span class="type">DataSourceTransactionManager</span> <span class="variable">ds</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DataSourceTransactionManager</span>();</span><br><span class="line">        ds.setDataSource(dataSource);</span><br><span class="line">        <span class="keyword">return</span> ds;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Mybatis配置"><a href="#Mybatis配置" class="headerlink" title="Mybatis配置"></a>Mybatis配置</h3><p><code>MyBatisConfig</code>配置sqlSession工厂类<code>SqlSessionFactoryBean</code>以及映射文件扫描<code>mapperScannerConfigurer</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MybatisConfig</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> SqlSessionFactoryBean <span class="title function_">sqlSessionFactoryBean</span><span class="params">(DataSource dataSource)</span>&#123;</span><br><span class="line">        <span class="type">SqlSessionFactoryBean</span> <span class="variable">sessionFactoryBean</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SqlSessionFactoryBean</span>();</span><br><span class="line">        <span class="comment">// 设置数据源</span></span><br><span class="line">        sessionFactoryBean.setDataSource(dataSource);</span><br><span class="line">        <span class="comment">// 设置实体类别名</span></span><br><span class="line">        sessionFactoryBean.setTypeAliasesPackage(<span class="string">&quot;top.brightzm.domain&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> sessionFactoryBean;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> MapperScannerConfigurer <span class="title function_">mapperScannerConfigurer</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">// 映射文件扫描</span></span><br><span class="line">        <span class="type">MapperScannerConfigurer</span> <span class="variable">mapperScannerConfigurer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MapperScannerConfigurer</span>();</span><br><span class="line">        mapperScannerConfigurer.setBasePackage(<span class="string">&quot;top.brightzm.dao&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> mapperScannerConfigurer;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Spring和Spring-MVC配置"><a href="#Spring和Spring-MVC配置" class="headerlink" title="Spring和Spring MVC配置"></a>Spring和Spring MVC配置</h3><p><code>SpringConfig</code>没啥好说的,为service和dao提供bean容器</p>
+<ul>
+<li><p>标识为配置类 @Configuration</p>
+</li>
+<li><p>扫描service所在的包 @ComponentScan</p>
+</li>
+<li><p>开启事务管理 @EnableTransactionManagement</p>
+</li>
+<li><p>读取配置文件<code>jdbc.properties</code> @PropertySource</p>
+</li>
+<li><p>引入配置类 @Import</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableTransactionManagement</span></span><br><span class="line"><span class="meta">@ComponentScan(&quot;top.brightzm.service&quot;)</span></span><br><span class="line"><span class="meta">@PropertySource(&quot;classpath:jdbc.properties&quot;)</span></span><br><span class="line"><span class="meta">@Import(&#123;JdbcConfig.class,MybatisConfig.class&#125;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SpringConfig</span> &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><code>SpringmvcConfig</code>也差不多</p>
+<ul>
+<li><p>标识为配置类 @Configuration</p>
+</li>
+<li><p>扫描controller所在的包 @ComponentScan</p>
+</li>
+<li><p>开启SpringMVC注解支持 @EnableWebMvc</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@ComponentScan(&quot;top.brightzm.controller&quot;)</span></span><br><span class="line"><span class="meta">@EnableWebMvc</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SpringmvcConfig</span> &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="功能模块"><a href="#功能模块" class="headerlink" title="功能模块"></a>功能模块</h2><h3 id="持久层"><a href="#持久层" class="headerlink" title="持久层"></a>持久层</h3><p>domain目录下模型类<code>Book</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Book</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> String type;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String description;</span><br><span class="line">    </span><br><span class="line">    Constructor Getter Setter .....</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>dao目录下映射接口<code>BookDao</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">BookDao</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Select(&quot;SELECT * FROM tbl_book&quot;)</span></span><br><span class="line">    List&lt;Book&gt; <span class="title function_">selectAll</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Select(&quot;SELECT * FROM tbl_book WHERE id = #&#123;id&#125;&quot;)</span></span><br><span class="line">    Book <span class="title function_">selectById</span><span class="params">(Integer id)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Insert(&quot;INSERT INTO tbl_book VALUES (NULL,#&#123;type&#125;,#&#123;name&#125;,#&#123;description&#125;)&quot;)</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">add</span><span class="params">(Book book)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Update(&quot;UPDATE tbl_book SET type=#&#123;type&#125;, name=#&#123;name&#125;, description=#&#123;description&#125; WHERE id = #&#123;id&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">update</span><span class="params">(Book book)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Delete(&quot;DELETE FROM tbl_book WHERE id = #&#123;id&#125; &quot;)</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">del</span><span class="params">(Integer id)</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="业务层"><a href="#业务层" class="headerlink" title="业务层"></a>业务层</h3><p>service目录下核心业务接口 <code>BookService</code> 以及实现类 <code>BookServiceImpl</code></p>
+<ul>
+<li>事务管理 @Transactional</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Transactional</span> </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">BookService</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> List&lt;Book&gt; <span class="title function_">selectAll</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> Book <span class="title function_">selectById</span><span class="params">(Integer id)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">add</span><span class="params">(Book book)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">update</span><span class="params">(Book book)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">del</span><span class="params">(Integer id)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BookServiceImpl</span> <span class="keyword">implements</span> <span class="title class_">BookService</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> BookDao bookDao;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> List&lt;Book&gt; <span class="title function_">selectAll</span><span class="params">()</span> &#123;</span><br><span class="line">        List&lt;Book&gt; books = bookDao.selectAll();</span><br><span class="line">        <span class="keyword">return</span> books;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Book <span class="title function_">selectById</span><span class="params">(Integer id)</span> &#123;</span><br><span class="line">        <span class="type">Book</span> <span class="variable">book</span> <span class="operator">=</span> bookDao.selectById(id);</span><br><span class="line">        <span class="keyword">return</span> book;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">add</span><span class="params">(Book book)</span> &#123;</span><br><span class="line">        bookDao.add(book);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">update</span><span class="params">(Book book)</span> &#123;</span><br><span class="line">        bookDao.update(book);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">del</span><span class="params">(Integer id)</span> &#123;</span><br><span class="line">        bookDao.del(id);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="表现层"><a href="#表现层" class="headerlink" title="表现层"></a>表现层</h3><p>controller目录下控制器<code>BookController</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/books&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BookController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> BookService bookService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping</span></span><br><span class="line">    <span class="keyword">public</span> List&lt;Book&gt; <span class="title function_">selectAll</span><span class="params">()</span>&#123;</span><br><span class="line">        List&lt;Book&gt; books = bookService.selectAll();</span><br><span class="line">        <span class="keyword">return</span> books;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/&#123;id&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> Book <span class="title function_">selectById</span><span class="params">(<span class="meta">@PathVariable</span> Integer id)</span>&#123;</span><br><span class="line">        <span class="type">Book</span> <span class="variable">book</span> <span class="operator">=</span> bookService.selectById(id);</span><br><span class="line">        <span class="keyword">return</span> book;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@PostMapping</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">add</span><span class="params">(<span class="meta">@RequestBody</span> Book book)</span>&#123;</span><br><span class="line">        <span class="type">boolean</span> <span class="variable">flag</span> <span class="operator">=</span> bookService.add(book);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@PutMapping</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">update</span><span class="params">(<span class="meta">@RequestBody</span> Book book)</span>&#123;</span><br><span class="line">        <span class="type">boolean</span> <span class="variable">flag</span> <span class="operator">=</span> bookService.update(book);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@DeleteMapping(&quot;/&#123;id&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">delete</span><span class="params">(<span class="meta">@PathVariable</span> Integer id)</span>&#123;</span><br><span class="line">        <span class="type">boolean</span> <span class="variable">flag</span> <span class="operator">=</span> bookService.del(id);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>测试类<code>BookServiceTest</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RunWith(SpringJUnit4ClassRunner.class)</span></span><br><span class="line"><span class="meta">@ContextConfiguration(classes = SpringConfig.class)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BookServiceTest</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> BookService bookService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">selectAll</span><span class="params">()</span>&#123;</span><br><span class="line">        List&lt;Book&gt; books = bookService.selectAll();</span><br><span class="line">        System.out.println(books);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">selectById</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="type">Book</span> <span class="variable">book</span> <span class="operator">=</span> bookService.selectById(<span class="number">1</span>);</span><br><span class="line">        System.out.println(book);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>有数据展示即可</p>
+<p><img src="/home/bright/Java/images/image-20221114162617206.png" alt="image-20221114162617206"></p>
+<p>完结撒花~~</p>
+]]></content>
+      <categories>
+        <category>Spring</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>Spring</tag>
+        <tag>SpringMVC</tag>
+        <tag>Mybatis</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Java常用API</title>
     <url>/2022/08/31/Java%20API/</url>
     <content><![CDATA[<p>API（Application Programming Interface,应用程序编程接口）是一些预先定义的接口，目的是提供应用程序与开发人员基于某软件或硬件的以访问一组例程的能力，而又无需访问源码，或理解内部工作机制的细节。这里列出一些Java常用的API.</p>
@@ -99,96 +372,6 @@
       <tags>
         <tag>Java</tag>
         <tag>API</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Mybatis入门</title>
-    <url>/2022/09/13/Mybatis%20%E5%85%A5%E9%97%A8/</url>
-    <content><![CDATA[<p>MyBatis 是一款优秀的持久层框架，它支持自定义 SQL、存储过程以及高级映射。MyBatis 免除了几乎所有的 JDBC 代码以及设置参数和获取结果集的工作。MyBatis 可以通过简单的 XML 或注解来配置和映射原始类型、接口和 Java POJO（Plain Old Java Objects，普通老式 Java 对象）为数据库中的记录。</p>
-<span id="more"></span>
-
-
-<h1 id="Mybatis-入门"><a href="#Mybatis-入门" class="headerlink" title="Mybatis 入门"></a>Mybatis 入门</h1><p><a href="https://mybatis.net.cn/index.html">https://mybatis.net.cn/index.html</a></p>
-<ol>
-<li><p>创建Maven项目，pom.xml中导入mybatis依赖</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- mybatis依赖 --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.5.6<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">      </span><br><span class="line">      <span class="comment">&lt;!-- 连接数据库 --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mariadb.jdbc<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mariadb-java-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.0.7<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编写mybatis核心配置文件 – mybatis-config.xml</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span> ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">configuration</span></span></span><br><span class="line"><span class="meta">        <span class="keyword">PUBLIC</span> <span class="string">&quot;-//mybatis.org//DTD Config 3.0//EN&quot;</span></span></span><br><span class="line"><span class="meta">        <span class="string">&quot;http://mybatis.org/dtd/mybatis-3-config.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">environments</span> <span class="attr">default</span>=<span class="string">&quot;development&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">&quot;development&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">&quot;JDBC&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">&quot;POOLED&quot;</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!--数据库连接信息 --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;driver&quot;</span> <span class="attr">value</span>=<span class="string">&quot;org.mariadb.jdbc.Driver&quot;</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;url&quot;</span> <span class="attr">value</span>=<span class="string">&quot;jdbc:mariadb://127.0.0.1:3306/mybatis&quot;</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> <span class="attr">value</span>=<span class="string">&quot;root&quot;</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> <span class="attr">value</span>=<span class="string">&quot;ROOT&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">environment</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">environments</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 加载sql映射文件 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">&quot;UserMapper.xml&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>加载sql映射文件 – UserMapper.xml</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span> ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">mapper</span></span></span><br><span class="line"><span class="meta">        <span class="keyword">PUBLIC</span> <span class="string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span></span></span><br><span class="line"><span class="meta">        <span class="string">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">&quot;test&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- namespace 名称空间--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectAll&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;top.brightzm.pojo.User&quot;</span>&gt;</span></span><br><span class="line">        select *</span><br><span class="line">        from tb_user;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>进行编码</p>
-<ol>
-<li><p>定义pojo类</p>
-</li>
-<li><p>加载核心配置文件，获取sqlFactory对象</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 1.加载mybatis核心配置文件，获取sqlSessionFactory</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">resource</span> <span class="operator">=</span> <span class="string">&quot;mybatis.config.xml&quot;</span>;</span><br><span class="line">        <span class="type">InputStream</span> <span class="variable">inputStream</span> <span class="operator">=</span> Resources.getResourceAsStream(resource);</span><br><span class="line">        <span class="type">SqlSessionFactory</span> <span class="variable">sqlSessionFactory</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SqlSessionFactoryBuilder</span>().build(inputStream);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>获取sqlSession对象，执行sql语句</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 2.获取sqlSession对象，执行sql语句</span></span><br><span class="line">        <span class="type">SqlSession</span> <span class="variable">sqlSession</span> <span class="operator">=</span> sqlSessionFactory.openSession();</span><br><span class="line"></span><br><span class="line">        List&lt;User&gt; users = sqlSession.selectList(<span class="string">&quot;test.selectAll&quot;</span>);</span><br><span class="line">        System.out.println(users);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>释放资源</p>
-</li>
-</ol>
-</li>
-</ol>
-<hr>
-<h1 id="Mapper-代理开发"><a href="#Mapper-代理开发" class="headerlink" title="Mapper 代理开发"></a>Mapper 代理开发</h1><ol>
-<li>定义与sql映射文件同名的Mapper接口，并且将Mapper接口和SQL映射文件放着在同一目录下</li>
-</ol>
-<blockquote>
-<p>MAVEN项目下，配置文件必须存放在 src&#x2F;resource目录下</p>
-<p>可以在resource目录下创建路径与接口同名路径，编译后就会处在同一目录下，如图</p>
-<p>路径更改后，mybatis-config.xml中也要同步更改映射文件的路径</p>
-</blockquote>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 加载sql映射文件 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">&quot;top/brightzm/mapper/UserMapper.xml&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>如果Mapper接口名称和SQL映射文件名称相同，并在同一目录下，则可以使用包扫描的方式简化sql映射文件加载</li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 加载sql映射文件 --&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- &lt;mapper resource=&quot;top/brightzm/mapper/UserMapper.xml&quot;/&gt;--&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">&lt;!-- Mapper代理开发方式 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">&quot;top.brightzm.mapper&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<p><img src="/images/image-20220911195311511.png" alt="image-20220911195311511"></p>
-<p><img src="/images/image-20220911195642386.png" alt="image-20220911195642386"></p>
-<ol start="2">
-<li><p>设置sql映射文件的namespace属性为Mapper接口全限定名 – UserMapper.xml</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span> ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">mapper</span></span></span><br><span class="line"><span class="meta">        <span class="keyword">PUBLIC</span> <span class="string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span></span></span><br><span class="line"><span class="meta">        <span class="string">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">&quot;top.brightzm.mapper.UserMapper&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- namespace 名称空间--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectAll&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;top.brightzm.pojo.User&quot;</span>&gt;</span></span><br><span class="line">        select *</span><br><span class="line">        from tb_user;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在Mapper接口中定义方法，方法名就是sql映射文件中sql语句的id，并保持参数类型和返回值类型一致</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;User&gt; <span class="title function_">selectAll</span><span class="params">()</span>;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>进行编码</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 通过sqlSession的getMapper方法获取Mapper接口的代理对象</span></span><br><span class="line">      <span class="type">UserMapper</span> <span class="variable">userMapper</span> <span class="operator">=</span> sqlSession.getMapper(UserMapper.class);</span><br><span class="line">      <span class="comment">// 调用方法</span></span><br><span class="line">      List&lt;User&gt; users = userMapper.selectAll();</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h1 id="Mybaits核心配置文件"><a href="#Mybaits核心配置文件" class="headerlink" title="Mybaits核心配置文件"></a>Mybaits核心配置文件</h1><ol>
-<li><p>文件结构</p>
-<blockquote>
-<p>配置各个标签，需要严格遵守前后顺序</p>
-</blockquote>
-</li>
-</ol>
-<p><img src="/images/image-20220911205135532.png" alt="image-20220911205135532"></p>
-<ol start="2">
-<li><p>类型别名</p>
-<p>类型别名可为 Java 类型设置一个缩写名字。 它仅用于 XML 配置，意在降低冗余的全限定类名书写</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">mybaits-config.xml </span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">typeAliases</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 类型别名 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">&quot;top.brightzm.pojo&quot;</span>/&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">typeAliases</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">UserMapper.xml</span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectAll&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;user&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-]]></content>
-      <categories>
-        <category>Javaweb</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>数据库</tag>
-        <tag>持久层</tag>
       </tags>
   </entry>
   <entry>
@@ -319,27 +502,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2021/12/02/hello-world/</url>
-    <content><![CDATA[<p>hexo默认界面，懒得删了。。。。。</p>
-<span id="more"></span>
-
-<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
     <title>常见算法</title>
     <url>/2022/08/29/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/</url>
     <content><![CDATA[<p>写的不多，抽空再学<br>算法，从字面意义上解释，就是用于计算的方法，通过该这种方法可以达到预期的计算结果。目前，被广泛认可的算法专业定义是：算法是模型分析的一组可行的，确定的，有穷的规则。通俗的说，算法也可以理解为一个解题步骤，有一些基本运算和规定的顺序构成。但是从计算机程序设计的角度看，算法由一系列求解问题的指令构成，能根据规范的输入，在有限的时间内获得有效的输出结果。算法代表了用系统的方法来描述解决问题的一种策略机制。</p>
@@ -362,6 +524,188 @@
       </categories>
       <tags>
         <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>集合</title>
+    <url>/2022/09/03/%E9%9B%86%E5%90%88%E4%BD%93%E7%B3%BB/</url>
+    <content><![CDATA[<p>Java的部分集合说明与展示。<br>什么是集合（Collection）？集合就是“由若干个确定的元素所构成的整体”</p>
+<span id="more"></span>
+
+<h2 id="单列集合-collection"><a href="#单列集合-collection" class="headerlink" title="单列集合 collection"></a>单列集合 collection</h2><h3 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h3><h4 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h4><ol>
+<li><p>迭代器在遍历集合的时候是不依赖索引的</p>
+</li>
+<li><p>迭代器需要掌握三个方法</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 迭代器</span></span><br><span class="line">        ArrayList&lt;String&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        list.add(<span class="string">&quot;aaa&quot;</span>);</span><br><span class="line">        list.add(<span class="string">&quot;bbb&quot;</span>);</span><br><span class="line">        list.add(<span class="string">&quot;ccc&quot;</span>);</span><br><span class="line">        list.add(<span class="string">&quot;ddd&quot;</span>);</span><br><span class="line"></span><br><span class="line">        Iterator&lt;String&gt; it = list.iterator();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (it.hasNext())&#123;</span><br><span class="line">            <span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> it.next();</span><br><span class="line">            System.out.println(str);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>迭代器的四个细节</p>
+<ul>
+<li>如果当前位置没有元素，继续获取会报错 <em><strong>NoSuchElementException</strong></em></li>
+<li>迭代器遍历完成之后，指针不会复位，如果需要重新遍历，需要再次创建新的迭代器对象</li>
+<li>循环中只能使用一次next方法，否则会遍历到没有元素的位置，报错<em><strong>NoSuchElementException</strong></em></li>
+<li>迭代器遍历时，不能使用集合的方法进行增加或者删除，只能使用迭代器自带的remove——方法删除</li>
+</ul>
+</li>
+</ol>
+<h4 id="增强for"><a href="#增强for" class="headerlink" title="增强for"></a>增强for</h4><p>不能进行删除</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 增强for遍历，本质上还是迭代器（iterator）</span></span><br><span class="line">        <span class="keyword">for</span> (String str : list)&#123;</span><br><span class="line">            System.out.println(str);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="lambda表达式"><a href="#lambda表达式" class="headerlink" title="lambda表达式"></a>lambda表达式</h4><p>不能进行删除</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// forEach方法遍历每个元素，传递到s</span></span><br><span class="line">list.forEach(s -&gt; System.out.println(s));</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="list-系列"><a href="#list-系列" class="headerlink" title="list 系列"></a>list 系列</h3><hr>
+<blockquote>
+<p>添加的元素是<strong>有序</strong>（存的顺序和取是顺序相同）、可重复、有索引</p>
+</blockquote>
+<h4 id="list-特有方法"><a href="#list-特有方法" class="headerlink" title="list 特有方法"></a>list 特有方法</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 添加元素，在指定位置插如元素，原来索引上的元素会依次向后移</span></span><br><span class="line">      list.add(<span class="number">3</span>,<span class="string">&quot;fff&quot;</span>);</span><br><span class="line">      System.out.println(list);</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 删除元素，删除指定位置的元素，返回被删除的元素</span></span><br><span class="line">      System.out.println(list.remove(<span class="number">3</span>));</span><br><span class="line">      System.out.println(list);</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 修改元素，将指定位置的元素更改为提供的元素，返回被修改的元素</span></span><br><span class="line">      System.out.println(list.set(<span class="number">2</span>, <span class="string">&quot;CCC&quot;</span>));</span><br><span class="line">      System.out.println(list);</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 获取元素，获取指定位置的元素</span></span><br><span class="line">      System.out.println(list.get(<span class="number">4</span>));</span><br></pre></td></tr></table></figure>
+
+<h4 id="list-五种遍历方式"><a href="#list-五种遍历方式" class="headerlink" title="list 五种遍历方式"></a>list 五种遍历方式</h4><ol>
+<li><p>迭代器遍历</p>
+<p>遍历的过程中需要删除时使用</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 1.迭代器遍历</span></span><br><span class="line">        Iterator&lt;String&gt; it = list.iterator();</span><br><span class="line">        <span class="keyword">while</span> (it.hasNext())&#123;</span><br><span class="line">            <span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> it.next();</span><br><span class="line">            <span class="keyword">if</span> (str.equals(<span class="string">&quot;bbb&quot;</span>))&#123;</span><br><span class="line">                it.remove(); <span class="comment">// 删除元素</span></span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(str);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>列表迭代器遍历</p>
+<p>遍历的过程中需要添加元素时使用</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 2.列表迭代器遍历</span></span><br><span class="line">        <span class="comment">// 在遍历过程中可以添加元素</span></span><br><span class="line">        ListIterator&lt;String&gt; listIt = list.listIterator();</span><br><span class="line">        <span class="keyword">while</span> (listIt.hasNext())&#123;</span><br><span class="line">            <span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> listIt.next();</span><br><span class="line">            <span class="keyword">if</span> (str.equals(<span class="string">&quot;ccc&quot;</span>))&#123;</span><br><span class="line">                listIt.add(<span class="string">&quot;CCC&quot;</span>); <span class="comment">// 添加元素</span></span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(str);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>增强for遍历</p>
+<p>仅仅需要遍历时使用</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 3.增强for</span></span><br><span class="line">        <span class="keyword">for</span> (String str: list)&#123;</span><br><span class="line">            System.out.println(str);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Lambda表达式</p>
+<p>仅仅需要遍历时使用</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 4.lambda表达式</span></span><br><span class="line">        list.forEach( s -&gt; System.out.println(s) );</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>普通for遍历</p>
+<p>如果遍历的时候需要操作索引时使用</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 5.普通for循环</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; list.size(); i++) &#123;</span><br><span class="line">            System.out.println(list.get(i));</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="set-系列"><a href="#set-系列" class="headerlink" title="set 系列"></a>set 系列</h3><hr>
+<h4 id="HashSet"><a href="#HashSet" class="headerlink" title="HashSet"></a>HashSet</h4><blockquote>
+<p>添加的元素是<strong>无序</strong>、不重复、无索引</p>
+</blockquote>
+<ul>
+<li><p>底层原理</p>
+<ul>
+<li><p>HashSet集合底层采取哈希表存储数据</p>
+</li>
+<li><p>哈希表是一种对于增删改查数据性能都较好的结构</p>
+</li>
+</ul>
+</li>
+<li><p>哈希表组成</p>
+<ul>
+<li>jdk8之前：数组+链表</li>
+<li>jdk8开始：数组+链表+红黑树</li>
+</ul>
+</li>
+<li><p>哈希值</p>
+<ul>
+<li><p>根据hashCode方法算出来的int类型的整数</p>
+</li>
+<li><p>该方法定义在Object类中，所有对象都可以调用，默认使用地址值进行计算</p>
+</li>
+<li><p>一般情况下，会重写hashCode方法，利用对象内部的属性值计算哈希值</p>
+<blockquote>
+<p>如果集合中存入的是自定义对象，必须要重写hashCode和equals方法</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 1.创建对象</span></span><br><span class="line">      <span class="type">Student</span> <span class="variable">s1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Student</span>(<span class="string">&quot;张三&quot;</span>,<span class="number">20</span>);</span><br><span class="line">      <span class="type">Student</span> <span class="variable">s2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Student</span>(<span class="string">&quot;张三&quot;</span>,<span class="number">20</span>);</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 2.如果没有重写hashCode方法，计算出的hash值是不同的</span></span><br><span class="line">      System.out.println(s1.hashCode());<span class="comment">// 1523554304</span></span><br><span class="line">      System.out.println(s2.hashCode());<span class="comment">// 1175962212</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 3.重写hashCode方法，计算的hash值就是相同的</span></span><br><span class="line">System.out.println(s1.hashCode());<span class="comment">// 24022540</span></span><br><span class="line">System.out.println(s2.hashCode());<span class="comment">// 24022540</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>存入数据过程</p>
+<ol>
+<li><p>创建一个默认长度16,默认 <em>加载因</em>  为0.75的数组</p>
+<blockquote>
+<p>当数组存入的数据达到（16*0.75&#x3D;12）个时，数组就会扩容两倍</p>
+</blockquote>
+</li>
+<li><p>根据元素的哈希值跟数组的长度计算出应存入的位置</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">index</span> <span class="operator">=</span> (数组长度 -<span class="number">1</span>) &amp; 哈希值</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>判断当前位置是否为null,如果是null就直接存入</p>
+</li>
+<li><p>如果不为null,调用equals方法比较属序值</p>
+</li>
+<li><p>一样就不存入数据               不一样则存入数据，形成链表</p>
+<ul>
+<li><p>jdk8之前：新元素存入数组，老元素挂在新元素下面</p>
+</li>
+<li><p>jkd8以后：新元素直接挂在老元素下面</p>
+<blockquote>
+<p>当链表长度大于8且数组长度大于等于64时，当前链表就会转为红黑树</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h4 id="LinkedHashSet"><a href="#LinkedHashSet" class="headerlink" title="LinkedHashSet"></a>LinkedHashSet</h4><blockquote>
+<ul>
+<li><p>有序、不重复、无索引</p>
+</li>
+<li><p>这里的有序是指保证存储和取出的元素顺序一致</p>
+</li>
+<li><p>HashSet的子类，底层依然是哈希表，只是每个元素多了一个双链表的机制记录存储的顺序</p>
+</li>
+</ul>
+</blockquote>
+<h4 id="TreeSet"><a href="#TreeSet" class="headerlink" title="TreeSet"></a>TreeSet</h4><blockquote>
+<p>可排序、不重复、无索引</p>
+<p>底层基于红黑树实现排序，增删改查性能都很好</p>
+</blockquote>
+<ul>
+<li><p>自定义排序规则的方式</p>
+<ol>
+<li><p>Javabean类实现Comparable接口，指定比较规则</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> class 类名 <span class="keyword">implements</span> <span class="title class_">Comparable</span>&lt;TestStudent&gt; &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="comment">// 返回值</span></span><br><span class="line">    <span class="comment">// 负数存在红黑树左边</span></span><br><span class="line">    <span class="comment">// 正数存在红黑树右边</span></span><br><span class="line">    <span class="comment">// 0表示已经存在，丢弃</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">compareTo</span><span class="params">(类名 o)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.参数 - o.参数;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建集合时，自定义Compartor比较器对象，指定比较规则</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">TreeSet&lt;类名&gt; ts = <span class="keyword">new</span> <span class="title class_">TreeSet</span>&lt;&gt;(<span class="keyword">new</span> <span class="title class_">Comparator</span>&lt;类名&gt;() &#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">    <span class="comment">// 返回值与方式一同理		</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">compare</span><span class="params">(类名 o1, 类名 o2)</span> &#123;</span><br><span class="line">       	<span class="keyword">return</span> o1.参数 - o2.参数;</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure></li>
+</ol>
+<blockquote>
+<p>默认使用方式一，如果方式一不满足需求，使用方式二</p>
+<p>如果两种方式都存在，则使用的是第二种排序方式</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><ul>
+<li>如果想要集合中的元素可重复<ul>
+<li>使用用ArrayList集合，基于数组（用的最多）</li>
+</ul>
+</li>
+<li>如果想要集合中的元素可重复，而且当前的增删改查操作明显多于查询<ul>
+<li>使用LinkedList集合，基于链表</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>如果想对集合中的元素去重<ul>
+<li>使用HashSet集合，基于哈希表（用的最多）</li>
+</ul>
+</li>
+<li>如果相对集合中的元素去重并保证存取数据<ul>
+<li>使用LinkedHashSet集合，基于哈希表的双链表，效率低于HashSet</li>
+</ul>
+</li>
+<li>如果想对集合中的元素进行排序<ul>
+<li>使用TreeSet集合，基于红黑树</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Java基础</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -570,185 +914,24 @@
       </tags>
   </entry>
   <entry>
-    <title>集合</title>
-    <url>/2022/09/03/%E9%9B%86%E5%90%88%E4%BD%93%E7%B3%BB/</url>
-    <content><![CDATA[<p>Java的部分集合说明与展示。<br>什么是集合（Collection）？集合就是“由若干个确定的元素所构成的整体”</p>
+    <title>Hello World</title>
+    <url>/2021/12/02/hello-world/</url>
+    <content><![CDATA[<p>hexo默认界面，懒得删了。。。。。</p>
 <span id="more"></span>
 
-<h2 id="单列集合-collection"><a href="#单列集合-collection" class="headerlink" title="单列集合 collection"></a>单列集合 collection</h2><h3 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h3><h4 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h4><ol>
-<li><p>迭代器在遍历集合的时候是不依赖索引的</p>
-</li>
-<li><p>迭代器需要掌握三个方法</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 迭代器</span></span><br><span class="line">        ArrayList&lt;String&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        list.add(<span class="string">&quot;aaa&quot;</span>);</span><br><span class="line">        list.add(<span class="string">&quot;bbb&quot;</span>);</span><br><span class="line">        list.add(<span class="string">&quot;ccc&quot;</span>);</span><br><span class="line">        list.add(<span class="string">&quot;ddd&quot;</span>);</span><br><span class="line"></span><br><span class="line">        Iterator&lt;String&gt; it = list.iterator();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (it.hasNext())&#123;</span><br><span class="line">            <span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> it.next();</span><br><span class="line">            System.out.println(str);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>迭代器的四个细节</p>
-<ul>
-<li>如果当前位置没有元素，继续获取会报错 <em><strong>NoSuchElementException</strong></em></li>
-<li>迭代器遍历完成之后，指针不会复位，如果需要重新遍历，需要再次创建新的迭代器对象</li>
-<li>循环中只能使用一次next方法，否则会遍历到没有元素的位置，报错<em><strong>NoSuchElementException</strong></em></li>
-<li>迭代器遍历时，不能使用集合的方法进行增加或者删除，只能使用迭代器自带的remove——方法删除</li>
-</ul>
-</li>
-</ol>
-<h4 id="增强for"><a href="#增强for" class="headerlink" title="增强for"></a>增强for</h4><p>不能进行删除</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 增强for遍历，本质上还是迭代器（iterator）</span></span><br><span class="line">        <span class="keyword">for</span> (String str : list)&#123;</span><br><span class="line">            System.out.println(str);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
 
-<h4 id="lambda表达式"><a href="#lambda表达式" class="headerlink" title="lambda表达式"></a>lambda表达式</h4><p>不能进行删除</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// forEach方法遍历每个元素，传递到s</span></span><br><span class="line">list.forEach(s -&gt; System.out.println(s));</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
 
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
 
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 
-<h3 id="list-系列"><a href="#list-系列" class="headerlink" title="list 系列"></a>list 系列</h3><hr>
-<blockquote>
-<p>添加的元素是<strong>有序</strong>（存的顺序和取是顺序相同）、可重复、有索引</p>
-</blockquote>
-<h4 id="list-特有方法"><a href="#list-特有方法" class="headerlink" title="list 特有方法"></a>list 特有方法</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 添加元素，在指定位置插如元素，原来索引上的元素会依次向后移</span></span><br><span class="line">      list.add(<span class="number">3</span>,<span class="string">&quot;fff&quot;</span>);</span><br><span class="line">      System.out.println(list);</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 删除元素，删除指定位置的元素，返回被删除的元素</span></span><br><span class="line">      System.out.println(list.remove(<span class="number">3</span>));</span><br><span class="line">      System.out.println(list);</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 修改元素，将指定位置的元素更改为提供的元素，返回被修改的元素</span></span><br><span class="line">      System.out.println(list.set(<span class="number">2</span>, <span class="string">&quot;CCC&quot;</span>));</span><br><span class="line">      System.out.println(list);</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 获取元素，获取指定位置的元素</span></span><br><span class="line">      System.out.println(list.get(<span class="number">4</span>));</span><br></pre></td></tr></table></figure>
-
-<h4 id="list-五种遍历方式"><a href="#list-五种遍历方式" class="headerlink" title="list 五种遍历方式"></a>list 五种遍历方式</h4><ol>
-<li><p>迭代器遍历</p>
-<p>遍历的过程中需要删除时使用</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 1.迭代器遍历</span></span><br><span class="line">        Iterator&lt;String&gt; it = list.iterator();</span><br><span class="line">        <span class="keyword">while</span> (it.hasNext())&#123;</span><br><span class="line">            <span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> it.next();</span><br><span class="line">            <span class="keyword">if</span> (str.equals(<span class="string">&quot;bbb&quot;</span>))&#123;</span><br><span class="line">                it.remove(); <span class="comment">// 删除元素</span></span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(str);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>列表迭代器遍历</p>
-<p>遍历的过程中需要添加元素时使用</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 2.列表迭代器遍历</span></span><br><span class="line">        <span class="comment">// 在遍历过程中可以添加元素</span></span><br><span class="line">        ListIterator&lt;String&gt; listIt = list.listIterator();</span><br><span class="line">        <span class="keyword">while</span> (listIt.hasNext())&#123;</span><br><span class="line">            <span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> listIt.next();</span><br><span class="line">            <span class="keyword">if</span> (str.equals(<span class="string">&quot;ccc&quot;</span>))&#123;</span><br><span class="line">                listIt.add(<span class="string">&quot;CCC&quot;</span>); <span class="comment">// 添加元素</span></span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(str);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>增强for遍历</p>
-<p>仅仅需要遍历时使用</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 3.增强for</span></span><br><span class="line">        <span class="keyword">for</span> (String str: list)&#123;</span><br><span class="line">            System.out.println(str);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Lambda表达式</p>
-<p>仅仅需要遍历时使用</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 4.lambda表达式</span></span><br><span class="line">        list.forEach( s -&gt; System.out.println(s) );</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>普通for遍历</p>
-<p>如果遍历的时候需要操作索引时使用</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 5.普通for循环</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; list.size(); i++) &#123;</span><br><span class="line">            System.out.println(list.get(i));</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h3 id="set-系列"><a href="#set-系列" class="headerlink" title="set 系列"></a>set 系列</h3><hr>
-<h4 id="HashSet"><a href="#HashSet" class="headerlink" title="HashSet"></a>HashSet</h4><blockquote>
-<p>添加的元素是<strong>无序</strong>、不重复、无索引</p>
-</blockquote>
-<ul>
-<li><p>底层原理</p>
-<ul>
-<li><p>HashSet集合底层采取哈希表存储数据</p>
-</li>
-<li><p>哈希表是一种对于增删改查数据性能都较好的结构</p>
-</li>
-</ul>
-</li>
-<li><p>哈希表组成</p>
-<ul>
-<li>jdk8之前：数组+链表</li>
-<li>jdk8开始：数组+链表+红黑树</li>
-</ul>
-</li>
-<li><p>哈希值</p>
-<ul>
-<li><p>根据hashCode方法算出来的int类型的整数</p>
-</li>
-<li><p>该方法定义在Object类中，所有对象都可以调用，默认使用地址值进行计算</p>
-</li>
-<li><p>一般情况下，会重写hashCode方法，利用对象内部的属性值计算哈希值</p>
-<blockquote>
-<p>如果集合中存入的是自定义对象，必须要重写hashCode和equals方法</p>
-</blockquote>
-</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 1.创建对象</span></span><br><span class="line">      <span class="type">Student</span> <span class="variable">s1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Student</span>(<span class="string">&quot;张三&quot;</span>,<span class="number">20</span>);</span><br><span class="line">      <span class="type">Student</span> <span class="variable">s2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Student</span>(<span class="string">&quot;张三&quot;</span>,<span class="number">20</span>);</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 2.如果没有重写hashCode方法，计算出的hash值是不同的</span></span><br><span class="line">      System.out.println(s1.hashCode());<span class="comment">// 1523554304</span></span><br><span class="line">      System.out.println(s2.hashCode());<span class="comment">// 1175962212</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 3.重写hashCode方法，计算的hash值就是相同的</span></span><br><span class="line">System.out.println(s1.hashCode());<span class="comment">// 24022540</span></span><br><span class="line">System.out.println(s2.hashCode());<span class="comment">// 24022540</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>存入数据过程</p>
-<ol>
-<li><p>创建一个默认长度16,默认 <em>加载因</em>  为0.75的数组</p>
-<blockquote>
-<p>当数组存入的数据达到（16*0.75&#x3D;12）个时，数组就会扩容两倍</p>
-</blockquote>
-</li>
-<li><p>根据元素的哈希值跟数组的长度计算出应存入的位置</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">index</span> <span class="operator">=</span> (数组长度 -<span class="number">1</span>) &amp; 哈希值</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>判断当前位置是否为null,如果是null就直接存入</p>
-</li>
-<li><p>如果不为null,调用equals方法比较属序值</p>
-</li>
-<li><p>一样就不存入数据               不一样则存入数据，形成链表</p>
-<ul>
-<li><p>jdk8之前：新元素存入数组，老元素挂在新元素下面</p>
-</li>
-<li><p>jkd8以后：新元素直接挂在老元素下面</p>
-<blockquote>
-<p>当链表长度大于8且数组长度大于等于64时，当前链表就会转为红黑树</p>
-</blockquote>
-</li>
-</ul>
-</li>
-</ol>
-</li>
-</ul>
-<h4 id="LinkedHashSet"><a href="#LinkedHashSet" class="headerlink" title="LinkedHashSet"></a>LinkedHashSet</h4><blockquote>
-<ul>
-<li><p>有序、不重复、无索引</p>
-</li>
-<li><p>这里的有序是指保证存储和取出的元素顺序一致</p>
-</li>
-<li><p>HashSet的子类，底层依然是哈希表，只是每个元素多了一个双链表的机制记录存储的顺序</p>
-</li>
-</ul>
-</blockquote>
-<h4 id="TreeSet"><a href="#TreeSet" class="headerlink" title="TreeSet"></a>TreeSet</h4><blockquote>
-<p>可排序、不重复、无索引</p>
-<p>底层基于红黑树实现排序，增删改查性能都很好</p>
-</blockquote>
-<ul>
-<li><p>自定义排序规则的方式</p>
-<ol>
-<li><p>Javabean类实现Comparable接口，指定比较规则</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> class 类名 <span class="keyword">implements</span> <span class="title class_">Comparable</span>&lt;TestStudent&gt; &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="comment">// 返回值</span></span><br><span class="line">    <span class="comment">// 负数存在红黑树左边</span></span><br><span class="line">    <span class="comment">// 正数存在红黑树右边</span></span><br><span class="line">    <span class="comment">// 0表示已经存在，丢弃</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">compareTo</span><span class="params">(类名 o)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.参数 - o.参数;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>创建集合时，自定义Compartor比较器对象，指定比较规则</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">TreeSet&lt;类名&gt; ts = <span class="keyword">new</span> <span class="title class_">TreeSet</span>&lt;&gt;(<span class="keyword">new</span> <span class="title class_">Comparator</span>&lt;类名&gt;() &#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">    <span class="comment">// 返回值与方式一同理		</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">compare</span><span class="params">(类名 o1, 类名 o2)</span> &#123;</span><br><span class="line">       	<span class="keyword">return</span> o1.参数 - o2.参数;</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure></li>
-</ol>
-<blockquote>
-<p>默认使用方式一，如果方式一不满足需求，使用方式二</p>
-<p>如果两种方式都存在，则使用的是第二种排序方式</p>
-</blockquote>
-</li>
-</ul>
-<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><ul>
-<li>如果想要集合中的元素可重复<ul>
-<li>使用用ArrayList集合，基于数组（用的最多）</li>
-</ul>
-</li>
-<li>如果想要集合中的元素可重复，而且当前的增删改查操作明显多于查询<ul>
-<li>使用LinkedList集合，基于链表</li>
-</ul>
-</li>
-</ul>
-<hr>
-<ul>
-<li>如果想对集合中的元素去重<ul>
-<li>使用HashSet集合，基于哈希表（用的最多）</li>
-</ul>
-</li>
-<li>如果相对集合中的元素去重并保证存取数据<ul>
-<li>使用LinkedHashSet集合，基于哈希表的双链表，效率低于HashSet</li>
-</ul>
-</li>
-<li>如果想对集合中的元素进行排序<ul>
-<li>使用TreeSet集合，基于红黑树</li>
-</ul>
-</li>
-</ul>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
-      <categories>
-        <category>Java基础</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
   </entry>
 </search>
