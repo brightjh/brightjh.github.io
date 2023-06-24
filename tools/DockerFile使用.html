@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>DockerFile使用 | THIS BLOG</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    <link rel="icon" href="/hero.png">
+    <meta name="description" content="技术永无止境">
+    
+    <link rel="preload" href="/assets/css/0.styles.e8e4f3a3.css" as="style"><link rel="preload" href="/assets/js/app.4552e9ca.js" as="script"><link rel="preload" href="/assets/js/2.245720e2.js" as="script"><link rel="preload" href="/assets/js/24.0a8a564b.js" as="script"><link rel="prefetch" href="/assets/js/10.06910aeb.js"><link rel="prefetch" href="/assets/js/11.5b4b7b4c.js"><link rel="prefetch" href="/assets/js/12.155fcbdf.js"><link rel="prefetch" href="/assets/js/13.f9ccf780.js"><link rel="prefetch" href="/assets/js/14.14705abe.js"><link rel="prefetch" href="/assets/js/15.b87cab04.js"><link rel="prefetch" href="/assets/js/16.425537b3.js"><link rel="prefetch" href="/assets/js/17.e2638f62.js"><link rel="prefetch" href="/assets/js/18.f0b685d6.js"><link rel="prefetch" href="/assets/js/19.38817534.js"><link rel="prefetch" href="/assets/js/20.2f9cdc7e.js"><link rel="prefetch" href="/assets/js/21.84856f28.js"><link rel="prefetch" href="/assets/js/22.d6e3cb56.js"><link rel="prefetch" href="/assets/js/23.3c4f0a3c.js"><link rel="prefetch" href="/assets/js/25.b27ac857.js"><link rel="prefetch" href="/assets/js/26.df7facb1.js"><link rel="prefetch" href="/assets/js/27.8f6aa3ed.js"><link rel="prefetch" href="/assets/js/3.292fd8e0.js"><link rel="prefetch" href="/assets/js/4.abb1af30.js"><link rel="prefetch" href="/assets/js/5.6895aa85.js"><link rel="prefetch" href="/assets/js/6.25c18510.js"><link rel="prefetch" href="/assets/js/7.45169419.js"><link rel="prefetch" href="/assets/js/8.901de557.js"><link rel="prefetch" href="/assets/js/9.da28008d.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.e8e4f3a3.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">THIS BLOG</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/advanced/" class="nav-link">
+  高级篇
+</a></div><div class="nav-item"><a href="/tools/" class="nav-link router-link-active">
+  工具篇
+</a></div><div class="nav-item"><a href="/basics/" class="nav-link">
+  基础篇
+</a></div><div class="nav-item"><a href="https://github.com/brightjh" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/advanced/" class="nav-link">
+  高级篇
+</a></div><div class="nav-item"><a href="/tools/" class="nav-link router-link-active">
+  工具篇
+</a></div><div class="nav-item"><a href="/basics/" class="nav-link">
+  基础篇
+</a></div><div class="nav-item"><a href="https://github.com/brightjh" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/tools/" aria-current="page" class="sidebar-link">工具篇</a></li><li><a href="/tools/IDEA 常用快捷键.html" class="sidebar-link">IDEA 常用快捷键</a></li><li><a href="/tools/Git的基础使用.html" class="sidebar-link">Git的基础使用</a></li><li><a href="/tools/DockerFile使用.html" class="active sidebar-link">DockerFile使用</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/tools/DockerFile使用.html#dockerfile的结构" class="sidebar-link">DockerFile的结构</a></li><li class="sidebar-sub-header"><a href="/tools/DockerFile使用.html#构建镜像" class="sidebar-link">构建镜像</a></li></ul></li><li><a href="/tools/DockerCompose使用.html" class="sidebar-link">DockerCompose使用</a></li><li><a href="/tools/Chat GPT怎么提高工作效率.html" class="sidebar-link">Chat GPT 怎么提高工作效率</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="dockerfile使用"><a href="#dockerfile使用" class="header-anchor">#</a> DockerFile使用</h1> <blockquote><p>Dockerfile是用于构建Docker镜像的文本文件，它包含了一系列指令和配置，用于定义镜像的构建过程。</p></blockquote> <div class="language-dockerfile extra-class"><pre class="language-dockerfile"><code><span class="token comment"># 指定基础镜像</span>
+<span class="token instruction"><span class="token keyword">FROM</span> ubuntu:latest</span>
+
+<span class="token comment"># 设置镜像的作者信息</span>
+<span class="token instruction"><span class="token keyword">LABEL</span> maintainer=<span class="token string">&quot;Your Name &lt;your@email.com&gt;&quot;</span></span>
+
+<span class="token comment"># 在镜像中执行一些命令</span>
+<span class="token instruction"><span class="token keyword">RUN</span> apt-get update &amp;&amp; apt-get install -y <span class="token operator">\</span>
+    package1 <span class="token operator">\</span>
+    package2 <span class="token operator">\</span>
+    package3</span>
+
+<span class="token comment"># 复制本地文件到镜像中的指定路径</span>
+<span class="token instruction"><span class="token keyword">COPY</span> ./app /app</span>
+
+<span class="token comment"># 设置工作目录</span>
+<span class="token instruction"><span class="token keyword">WORKDIR</span> /app</span>
+
+<span class="token comment"># 暴露容器的某个端口</span>
+<span class="token instruction"><span class="token keyword">EXPOSE</span> 8080</span>
+
+<span class="token comment"># 定义环境变量</span>
+<span class="token instruction"><span class="token keyword">ENV</span> ENV_NAME value</span>
+
+<span class="token comment"># 运行容器时执行的命令</span>
+<span class="token instruction"><span class="token keyword">CMD</span> [<span class="token string">&quot;java&quot;</span>, <span class="token string">&quot;-jar&quot;</span>, <span class="token string">&quot;app.jar&quot;</span>]</span>
+</code></pre></div><h2 id="dockerfile的结构"><a href="#dockerfile的结构" class="header-anchor">#</a> DockerFile的结构</h2> <ul><li><code>FROM</code>：指定基础镜像，可以是官方仓库的镜像或其他已有的镜像。</li> <li><code>LABEL</code>：定义镜像的元数据信息，如作者、描述等。</li> <li><code>RUN</code>：在镜像中执行命令，可以用于安装软件包、配置环境等。</li> <li><code>COPY</code>：将本地文件复制到镜像中的指定路径。</li> <li><code>WORKDIR</code>：设置工作目录，后续的命令将在该目录下执行。</li> <li><code>EXPOSE</code>：指定容器暴露的端口，供其他容器或外部访问。</li> <li><code>ENV</code>：定义环境变量，可在容器内使用。</li> <li><code>CMD</code>：指定容器启动时要执行的命令，通常是应用程序的启动命令。</li></ul> <h2 id="构建镜像"><a href="#构建镜像" class="header-anchor">#</a> 构建镜像</h2> <div class="language-ba extra-class"><pre class="language-text"><code>docker build -t image_name .
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/tools/Git的基础使用.html" class="prev">
+        Git的基础使用
+      </a></span> <span class="next"><a href="/tools/DockerCompose使用.html">
+        DockerCompose使用
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.4552e9ca.js" defer></script><script src="/assets/js/2.245720e2.js" defer></script><script src="/assets/js/24.0a8a564b.js" defer></script>
+  </body>
+</html>

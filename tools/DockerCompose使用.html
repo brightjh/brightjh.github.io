@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>DockerCompose使用 | THIS BLOG</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    <link rel="icon" href="/hero.png">
+    <meta name="description" content="技术永无止境">
+    
+    <link rel="preload" href="/assets/css/0.styles.e8e4f3a3.css" as="style"><link rel="preload" href="/assets/js/app.4552e9ca.js" as="script"><link rel="preload" href="/assets/js/2.245720e2.js" as="script"><link rel="preload" href="/assets/js/23.3c4f0a3c.js" as="script"><link rel="prefetch" href="/assets/js/10.06910aeb.js"><link rel="prefetch" href="/assets/js/11.5b4b7b4c.js"><link rel="prefetch" href="/assets/js/12.155fcbdf.js"><link rel="prefetch" href="/assets/js/13.f9ccf780.js"><link rel="prefetch" href="/assets/js/14.14705abe.js"><link rel="prefetch" href="/assets/js/15.b87cab04.js"><link rel="prefetch" href="/assets/js/16.425537b3.js"><link rel="prefetch" href="/assets/js/17.e2638f62.js"><link rel="prefetch" href="/assets/js/18.f0b685d6.js"><link rel="prefetch" href="/assets/js/19.38817534.js"><link rel="prefetch" href="/assets/js/20.2f9cdc7e.js"><link rel="prefetch" href="/assets/js/21.84856f28.js"><link rel="prefetch" href="/assets/js/22.d6e3cb56.js"><link rel="prefetch" href="/assets/js/24.0a8a564b.js"><link rel="prefetch" href="/assets/js/25.b27ac857.js"><link rel="prefetch" href="/assets/js/26.df7facb1.js"><link rel="prefetch" href="/assets/js/27.8f6aa3ed.js"><link rel="prefetch" href="/assets/js/3.292fd8e0.js"><link rel="prefetch" href="/assets/js/4.abb1af30.js"><link rel="prefetch" href="/assets/js/5.6895aa85.js"><link rel="prefetch" href="/assets/js/6.25c18510.js"><link rel="prefetch" href="/assets/js/7.45169419.js"><link rel="prefetch" href="/assets/js/8.901de557.js"><link rel="prefetch" href="/assets/js/9.da28008d.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.e8e4f3a3.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">THIS BLOG</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/advanced/" class="nav-link">
+  高级篇
+</a></div><div class="nav-item"><a href="/tools/" class="nav-link router-link-active">
+  工具篇
+</a></div><div class="nav-item"><a href="/basics/" class="nav-link">
+  基础篇
+</a></div><div class="nav-item"><a href="https://github.com/brightjh" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/advanced/" class="nav-link">
+  高级篇
+</a></div><div class="nav-item"><a href="/tools/" class="nav-link router-link-active">
+  工具篇
+</a></div><div class="nav-item"><a href="/basics/" class="nav-link">
+  基础篇
+</a></div><div class="nav-item"><a href="https://github.com/brightjh" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/tools/" aria-current="page" class="sidebar-link">工具篇</a></li><li><a href="/tools/IDEA 常用快捷键.html" class="sidebar-link">IDEA 常用快捷键</a></li><li><a href="/tools/Git的基础使用.html" class="sidebar-link">Git的基础使用</a></li><li><a href="/tools/DockerFile使用.html" class="sidebar-link">DockerFile使用</a></li><li><a href="/tools/DockerCompose使用.html" class="active sidebar-link">DockerCompose使用</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/tools/DockerCompose使用.html#文件示例" class="sidebar-link">文件示例</a></li><li class="sidebar-sub-header"><a href="/tools/DockerCompose使用.html#文件结构" class="sidebar-link">文件结构</a></li></ul></li><li><a href="/tools/Chat GPT怎么提高工作效率.html" class="sidebar-link">Chat GPT 怎么提高工作效率</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="dockercompose使用"><a href="#dockercompose使用" class="header-anchor">#</a> DockerCompose使用</h1> <blockquote><p>Docker Compose是一个用于定义和运行多容器Docker应用程序的工具。它使用YAML文件来定义应用程序的服务、网络、存储卷等配置，并提供简化的命令来启动、停止和管理这些容器</p></blockquote> <h2 id="文件示例"><a href="#文件示例" class="header-anchor">#</a> 文件示例</h2> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">'3'</span>
+
+<span class="token key atrule">services</span><span class="token punctuation">:</span>
+  <span class="token key atrule">web</span><span class="token punctuation">:</span>
+    <span class="token key atrule">build</span><span class="token punctuation">:</span> .
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> 8080<span class="token punctuation">:</span><span class="token number">80</span>
+    <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> ./app<span class="token punctuation">:</span>/app
+    <span class="token key atrule">depends_on</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> db
+
+  <span class="token key atrule">db</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> mysql<span class="token punctuation">:</span><span class="token number">5.7</span>
+    <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> MYSQL_ROOT_PASSWORD=secret
+      <span class="token punctuation">-</span> MYSQL_DATABASE=myapp
+      <span class="token punctuation">-</span> MYSQL_USER=user
+      <span class="token punctuation">-</span> MYSQL_PASSWORD=password
+    <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> db_data<span class="token punctuation">:</span>/var/lib/mysql
+
+<span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+  <span class="token key atrule">db_data</span><span class="token punctuation">:</span>
+</code></pre></div><h2 id="文件结构"><a href="#文件结构" class="header-anchor">#</a> 文件结构</h2> <ol><li><p><code>version</code>: 指定 Docker Compose 文件的版本。当前常用的版本有 1、2、2.1、3、3.1 等，每个版本支持不同的语法和功能。</p></li> <li><p><code>services</code>: 定义了要运行的服务列表，每个服务都有自己的配置。</p> <ul><li><code>web</code> 和 <code>db</code> 是服务的名称。</li> <li><code>build</code>（可选）: 指定 Dockerfile 的路径，用于构建镜像。在示例中，使用当前目录下的 Dockerfile 进行构建。</li> <li><code>image</code>（可选）: 指定要使用的镜像名称。在示例中，使用官方的 MySQL 5.7 镜像。</li> <li><code>ports</code>（可选）: 定义端口映射关系。示例中将容器内的 80 端口映射到主机的 8080 端口。</li> <li><code>volumes</code>（可选）: 定义文件或目录的挂载关系。示例中将主机的 <code>./app</code> 目录挂载到容器的 <code>/app</code> 路径，以便在容器内访问该目录。</li> <li><code>depends_on</code>（可选）: 定义服务之间的依赖关系。示例中，<code>web</code> 服务依赖于 <code>db</code> 服务，确保 <code>db</code> 服务在 <code>web</code> 服务启动之前启动。</li> <li><code>environment</code>（可选）: 定义容器的环境变量。示例中设置了 MySQL 的 root 密码、数据库名、用户名和密码。</li></ul></li> <li><p><code>volumes</code>: 定义命名卷，用于持久化存储数据。示例中定义了一个名为 <code>db_data</code> 的命名卷。</p></li></ol></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/tools/DockerFile使用.html" class="prev">
+        DockerFile使用
+      </a></span> <span class="next"><a href="/tools/Chat GPT怎么提高工作效率.html">
+        Chat GPT 怎么提高工作效率
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.4552e9ca.js" defer></script><script src="/assets/js/2.245720e2.js" defer></script><script src="/assets/js/23.3c4f0a3c.js" defer></script>
+  </body>
+</html>

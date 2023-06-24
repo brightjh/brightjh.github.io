@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Java常用API | THIS BLOG</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    <link rel="icon" href="/hero.png">
+    <meta name="description" content="技术永无止境">
+    
+    <link rel="preload" href="/assets/css/0.styles.e8e4f3a3.css" as="style"><link rel="preload" href="/assets/js/app.4552e9ca.js" as="script"><link rel="preload" href="/assets/js/2.245720e2.js" as="script"><link rel="preload" href="/assets/js/9.da28008d.js" as="script"><link rel="prefetch" href="/assets/js/10.06910aeb.js"><link rel="prefetch" href="/assets/js/11.5b4b7b4c.js"><link rel="prefetch" href="/assets/js/12.155fcbdf.js"><link rel="prefetch" href="/assets/js/13.f9ccf780.js"><link rel="prefetch" href="/assets/js/14.14705abe.js"><link rel="prefetch" href="/assets/js/15.b87cab04.js"><link rel="prefetch" href="/assets/js/16.425537b3.js"><link rel="prefetch" href="/assets/js/17.e2638f62.js"><link rel="prefetch" href="/assets/js/18.f0b685d6.js"><link rel="prefetch" href="/assets/js/19.38817534.js"><link rel="prefetch" href="/assets/js/20.2f9cdc7e.js"><link rel="prefetch" href="/assets/js/21.84856f28.js"><link rel="prefetch" href="/assets/js/22.d6e3cb56.js"><link rel="prefetch" href="/assets/js/23.3c4f0a3c.js"><link rel="prefetch" href="/assets/js/24.0a8a564b.js"><link rel="prefetch" href="/assets/js/25.b27ac857.js"><link rel="prefetch" href="/assets/js/26.df7facb1.js"><link rel="prefetch" href="/assets/js/27.8f6aa3ed.js"><link rel="prefetch" href="/assets/js/3.292fd8e0.js"><link rel="prefetch" href="/assets/js/4.abb1af30.js"><link rel="prefetch" href="/assets/js/5.6895aa85.js"><link rel="prefetch" href="/assets/js/6.25c18510.js"><link rel="prefetch" href="/assets/js/7.45169419.js"><link rel="prefetch" href="/assets/js/8.901de557.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.e8e4f3a3.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">THIS BLOG</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/advanced/" class="nav-link">
+  高级篇
+</a></div><div class="nav-item"><a href="/tools/" class="nav-link">
+  工具篇
+</a></div><div class="nav-item"><a href="/basics/" class="nav-link router-link-active">
+  基础篇
+</a></div><div class="nav-item"><a href="https://github.com/brightjh" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/advanced/" class="nav-link">
+  高级篇
+</a></div><div class="nav-item"><a href="/tools/" class="nav-link">
+  工具篇
+</a></div><div class="nav-item"><a href="/basics/" class="nav-link router-link-active">
+  基础篇
+</a></div><div class="nav-item"><a href="https://github.com/brightjh" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/basics/" aria-current="page" class="sidebar-link">基础篇</a></li><li><a href="/basics/我的LeetCode算法笔记.html" class="sidebar-link">LeetCode</a></li><li><a href="/basics/数据结构.html" class="sidebar-link">数据结构</a></li><li><a href="/basics/集合体系.html" class="sidebar-link">集合体系</a></li><li><a href="/basics/Java常用API.html" class="active sidebar-link">Java常用API</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/basics/SQL 语句.html" class="sidebar-link">SQL 语句</a></li><li><a href="/basics/设计模式.html" class="sidebar-link">设计模式</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="java常用api"><a href="#java常用api" class="header-anchor">#</a> Java常用API</h1> <h3 id="object"><a href="#object" class="header-anchor">#</a> Object</h3> <ol><li>Object 是java中的顶级父类</li> <li>toString(): 一般会被重写,打印对象时打印属性</li> <li>equals():比较对象,同样一般会重写,比较对象属性值是否相同</li> <li>clone(): 克隆,默认浅克隆,使用需要重写方法.如果需要深克隆需要再次重写方法或者使用第三方工具类. gy</li></ol> <h3 id="objects"><a href="#objects" class="header-anchor">#</a> Objects</h3> <ol><li>objects是一个对象工具类,提供一些操作对象的方法</li> <li>equals(对象1,对象2):先做非空判断,再比较两个对象</li> <li>isNull(对象):判断对象是否为空</li> <li>noNull(对象):判断对象是否不是空,与前者相反</li></ol> <h3 id="biginteger"><a href="#biginteger" class="header-anchor">#</a> BigInteger</h3> <ol><li>表示一个大整数</li> <li>如果数字没有超过long的范围,可以使用静态方法获取</li> <li>如果超出范围,就用构造方法获取</li> <li>对象一旦创建,内部记录的值将不能发生改变</li> <li>只要进行计算,都会产生一个新的BigInteger对象</li> <li>加减乘除 比较 次幂 转成整数</li></ol> <h3 id="bigdecimal"><a href="#bigdecimal" class="header-anchor">#</a> BigDecimal</h3> <ol><li>表示较大的小数和小数运算失真的问题</li> <li>超过double类型,使用新建对象,没有超出就使用valueof()方法</li> <li>加减乘除(四舍五入: RoundingMode.HALF_UP)</li></ol> <h3 id="regex-正则表达式"><a href="#regex-正则表达式" class="header-anchor">#</a> Regex 正则表达式</h3> <ol><li><p>校验字符串是否满足规则</p></li> <li><p>在一段文本中查找满足要求的内容</p></li> <li><p><img src="/assets/img/image-20220822142637567.55e5f925.png" alt="image-20220822142637567"></p></li></ol> <p><img src="/assets/img/image-20220822142712074.1a0c8c8b.png" alt="image-20220822142712074"></p> <h3 id="simpledateformat"><a href="#simpledateformat" class="header-anchor">#</a> SimpleDateFormat</h3> <ul><li><p>y年</p></li> <li><p>M月</p></li> <li><p>d日</p></li> <li><p>H时</p></li> <li><p>m分</p></li> <li><p>s秒</p></li></ul> <ol><li><p>format(Date) 格式化</p></li> <li><p>parse(String) 解析</p></li></ol> <h3 id="calendar"><a href="#calendar" class="header-anchor">#</a> Calendar</h3> <ul><li><p>一个抽象类</p></li> <li><p>根据不同时区获取不同的日历对象,不能通过new获取,而是通过static修饰的方法getInstance获取</p></li> <li><p>默认表示当前时间</p></li> <li><p>月份从0开始</p></li> <li><p>星期日是一周的开始(老外设置的)</p></li> <li><p>把年月日等放到数组当中(原理)</p></li> <li><p>数组索引对应</p> <ol start="0"><li><p>纪元</p></li> <li><p>年</p></li> <li><p>月</p></li> <li><p>一年中的第几周</p></li> <li><p>一个月中的第几周</p></li> <li><p>一个月中第几天(多少号)</p> <p>...........</p></li></ol></li></ul></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/basics/集合体系.html" class="prev">
+        集合体系
+      </a></span> <span class="next"><a href="/basics/SQL 语句.html">
+        SQL 语句
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.4552e9ca.js" defer></script><script src="/assets/js/2.245720e2.js" defer></script><script src="/assets/js/9.da28008d.js" defer></script>
+  </body>
+</html>
